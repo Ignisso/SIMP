@@ -1,15 +1,16 @@
 package com.editor.window;
 
 import javax.swing.*;
+import com.editor.core.*;
 
 public class MenuFile
 extends JMenu {
-	public MenuFile() {
+	public MenuFile(EditorRuntime root) {
 		super("File");
-		this.add(new EntryNew());
-		this.add(new EntryOpen());
-		this.add(new EntrySave());
-		this.add(new EntrySaveAs());
-		this.add(new EntryExit());
+		this.add(new EntryNew(root));
+		this.add(new EntryOpen(root));
+		this.add(new EntrySave(root));
+		this.add(new EntrySaveAs(root));
+		this.add(new EntryExit(root));
 	}
 }

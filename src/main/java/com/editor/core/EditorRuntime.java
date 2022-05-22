@@ -5,13 +5,13 @@ import com.editor.window.*;
 
 public class EditorRuntime {
 	//private History  history;
-	private Settings settings;
-	private Window   mainWindow;
+	private Settings   settings;
+	private MainWindow mainWindow;
 	
 	public EditorRuntime() {
 		//this.history    = new History();
 		this.settings   = new Settings();
-		this.mainWindow = new MainWindow();
+		this.mainWindow = new MainWindow(this);
 	}
 	
 	public void launch() {
@@ -27,7 +27,7 @@ public class EditorRuntime {
 		return this.history;
 	}*/
 	
-	public Window getWindow() {
+	public MainWindow getWindow() {
 		return this.mainWindow;
 	}
 	

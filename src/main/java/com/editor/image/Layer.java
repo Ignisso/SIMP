@@ -1,17 +1,20 @@
 package com.editor.image;
 
 import javax.swing.*;
+import com.editor.window.*;
 
 public class Layer
 extends JLabel {
-	private boolean   visible;
-	private Image     root;
-	private Integer   index;
+	private MainWindow window;
+	private boolean    visible;
+	private Integer    index;
 	
-	public Layer(Image img, Integer index) {
+	public Layer(MainWindow window, Icon image, Integer index) {
+		super(image);
 		this.visible = true;
-		this.root    = img;
 		this.index   = index;
+		this.window  = window;
+		this.setBounds(window.getBounds());
 	}
 	
 	public void changeVisibility() {

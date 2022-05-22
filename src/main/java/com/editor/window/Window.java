@@ -2,10 +2,11 @@ package com.editor.window;
 
 import javax.swing.*;
 import com.editor.image.*;
+import com.editor.core.*;
 
 public abstract class Window
 extends JFrame {
-	public Window(String title, int width, int height) {
+	public Window(EditorRuntime root, String title, int width, int height) {
 		super(title);
 		this.setSize(width, height);
 		try {
