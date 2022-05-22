@@ -1,7 +1,9 @@
+package com.editor.image;
+
 import javax.swing.*;
 
 public class Layer
-extends JPanel {
+extends JLabel {
 	private boolean   visible;
 	private Image     root;
 	private Integer   index;

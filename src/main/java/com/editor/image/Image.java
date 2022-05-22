@@ -1,4 +1,6 @@
-import java.util.ArrayList;
+package com.editor.image;
+
+import javax.swing.*;
 
 public class Image
 extends JLayeredPane {
@@ -6,5 +8,6 @@ extends JLayeredPane {
 	
 	public Image() {
 		super();
+		this.activeLayer = null;
 	}
 }
