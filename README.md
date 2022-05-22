@@ -1,7 +1,7 @@
 # APRO\_22L\_PRO\_PT\_Edytor\_obrazow
 A simple, yet working Image Editor written in Java as a part of APRO2 classes on Warsaw University of Technology.
 
-![Screenshot of this app](https://imgur.com/DcFlH3L)
+![Screenshot of this app](https://i.imgur.com/DcFlH3L.png)
 
 ## Key Features
 - written in Java
