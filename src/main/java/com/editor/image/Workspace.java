@@ -1,10 +1,10 @@
 package com.editor.image;
 
-import javax.swing.*;
 import com.editor.window.*;
+import javax.swing.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.*;
 
 public class Workspace {
 	private Image      image;
@@ -17,7 +17,20 @@ public class Workspace {
 		this.window.validate();
 		this.window.repaint();
 	}
+
 	
+	private void exportWorkspace(String path) throws IOException {
+		FileOutputStream fos = new FileOutputStream(path);
+		ObjectOutputStream oos = new ObjectOutputStream(fos);
+		writeObject(oos);
+	}
+	
+	private void writeObject(ObjectOutputStream oos) throws IOException {
+		oos.writeObject(this);
+		oos.flush();
+		oos.close();
+	}
+
 	public void loadNewImage(File image) {
 		BufferedImage bi = null;
 		try {

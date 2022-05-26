@@ -4,6 +4,7 @@ import javax.swing.*;
 import com.editor.image.*;
 import com.editor.core.*;
 import java.awt.event.*;
+import java.io.*;
 
 public class MainWindow
 extends Window {
@@ -21,5 +22,11 @@ extends Window {
 	
 	public Workspace getWorkspace() {
 		return this.workspace;
+	}
+	
+	public Workspace importWorkspace(String path) throws IOException, ClassNotFoundException {
+		FileInputStream fis = new FileInputStream(path);
+		ObjectInputStream ois = new ObjectInputStream(fis);
+		return (Workspace) ois.readObject();
 	}
 }
