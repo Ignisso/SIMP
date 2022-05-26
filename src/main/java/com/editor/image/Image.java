@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.awt.image.BufferedImage;
 
 public class Image
-extends JLayeredPane {
+extends JLayeredPane implements Cloneable {
 	private MainWindow       window;
 	private Integer          activeLayer;
 	private ArrayList<Layer> layers;
@@ -18,6 +18,10 @@ extends JLayeredPane {
 		this.activeLayer = null;
 		this.layers      = new ArrayList<Layer>();
 		this.zoom        = 1.f;
+	}
+
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 	
 	public void addLayer(BufferedImage image) {
