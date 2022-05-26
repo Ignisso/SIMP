@@ -3,23 +3,56 @@ package com.editor.image;
 import javax.swing.*;
 import com.editor.window.*;
 import java.util.ArrayList;
+import java.awt.image.BufferedImage;
 
 public class Image
 extends JLayeredPane {
 	private MainWindow       window;
 	private Integer          activeLayer;
 	private ArrayList<Layer> layers;
+	private double           zoom;
 	
 	public Image(MainWindow window) {
 		super();
 		this.window      = window;
 		this.activeLayer = null;
 		this.layers      = new ArrayList<Layer>();
+		this.zoom        = 1.f;
 	}
 	
-	public void addLayer(Icon image) {
-		this.layers.add(new Layer(this.window, image, this.layers.size()));
-		this.add(this.layers.get(this.layers.size() - 1), this.layers.size());
+	public void addLayer(BufferedImage image) {
+		Layer layer = new Layer(this.window, image, this.layers.size(), this.zoom);
+		this.layers.add(layer);
+		this.add(layer, this.layers.size());
 		this.activeLayer = this.layers.size();
+		layer.update(this.zoom);
+	}
+	
+	public void update() {
+		for (Layer l : this.layers)
+			l.update();
+	}
+	
+	public void update(double scale) {
+		for (Layer l : this.layers)
+			l.update(scale);
+	}
+	
+	public void zoomOut() {
+		if (this.zoom > 0.01f) {
+			this.zoom -= (this.zoom * 0.25f);
+			this.update(this.zoom);
+			this.window.validate();
+			this.window.repaint();
+		}
+	}
+	
+	public void zoomIn() {
+		if (this.zoom < 100.f) {
+			this.zoom += (this.zoom * 0.25f);
+			this.update(this.zoom);
+			this.window.validate();
+			this.window.repaint();
+		}
 	}
 }

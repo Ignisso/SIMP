@@ -14,6 +14,7 @@ public class Workspace {
 		this.window = window;
 		this.image  = new Image(window);
 		this.window.add(this.image);
+		this.window.validate();
 		this.window.repaint();
 	}
 	
@@ -27,7 +28,7 @@ public class Workspace {
 		
 		this.window.remove(this.image);
 		this.image = new Image(this.window);
-		this.image.addLayer(new ImageIcon(bi));
+		this.image.addLayer(bi);
 		this.window.add(this.image);
 		this.window.validate();
 		this.window.repaint();
@@ -39,5 +40,11 @@ public class Workspace {
 	
 	public MainWindow getWindow() {
 		return this.window;
+	}
+	
+	public void update() {
+		this.image.update();
+		this.window.validate();
+		this.window.repaint();
 	}
 }
