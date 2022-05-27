@@ -1,2 +1,2 @@
-rm -rf *.class
+find . -type f -name "*.class" -delete
 echo Process finished...
