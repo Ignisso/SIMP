@@ -9,9 +9,9 @@ public class EditorRuntime {
 	private MainWindow mainWindow;
 	
 	public EditorRuntime() {
-		//this.history    = new History();
-		this.settings   = new Settings();
 		this.mainWindow = new MainWindow(this);
+		//this.history    = new History();
+		this.settings   = new Settings(this);
 	}
 	
 	public void launch() {

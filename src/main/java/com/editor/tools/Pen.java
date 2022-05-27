@@ -4,7 +4,7 @@ import com.editor.core.*;
 
 public class Pen
 extends Tool {
-	public Pen(Settings settings) {
-		super(settings);
+	public Pen(EditorRuntime root) {
+		super(root);
 	}
 }
