@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.awt.image.BufferedImage;
 
 public class Image
-extends JLayeredPane {
+extends JLayeredPane implements Cloneable {
 	private MainWindow       window;
 	private Integer          activeLayer;
 	private ArrayList<Layer> layers;
@@ -19,9 +19,19 @@ extends JLayeredPane {
 		this.layers      = new ArrayList<Layer>();
 		this.scale       = 1.f;
 	}
+
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
+	}
 	
 	public double getScale() {
 		return this.scale;
+	}
+	
+	public Layer getActiveLayer() {
+		if (activeLayer == null)
+			return null;
+		return this.layers.get(this.activeLayer);
 	}
 	
 	public void addLayer(BufferedImage image) {
@@ -53,11 +63,5 @@ extends JLayeredPane {
 			this.window.validate();
 			this.window.repaint();
 		}
-	}
-	
-	public Layer getActiveLayer() {
-		if (activeLayer == null)
-			return null;
-		return this.layers.get(this.activeLayer);
 	}
 }

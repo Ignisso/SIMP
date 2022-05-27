@@ -8,10 +8,10 @@ extends JMenuBar {
 	public MainBar(EditorRuntime root) {
 		super();
 		add(new MenuFile(root));
-		//this.add(new MenuEdit(this));
-		//this.add(new MenuTools(this));
-		//this.add(new MenuEffects(this));
-		//this.add(new MenuView(this));
-		//this.add(new MenuHelp(this));
+		add(new MenuEdit(root));
+		//add(new MenuTools(root));
+		//add(new MenuEffects(root));
+		//add(new MenuView(root));
+		//add(new MenuHelp(root));
 	}
 }
