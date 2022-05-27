@@ -7,10 +7,10 @@ public class RGBA {
 	private byte a;
 	
 	public RGBA(int rgba) {
-		this.r = (byte)((rgba >> 24) & 0xFF);
-		this.g = (byte)((rgba >> 16) & 0xFF);
-		this.b = (byte)((rgba >> 8) & 0xFF);
-		this.a = (byte)(rgba & 0xFF);
+		this.a = (byte)((rgba >> 24) & 0xFF);
+		this.r = (byte)((rgba >> 16) & 0xFF);
+		this.g = (byte)((rgba >> 8) & 0xFF);
+		this.b = (byte)(rgba & 0xFF);
 	}
 	
 	public byte getRed() {
@@ -47,13 +47,13 @@ public class RGBA {
 	
 	public int getRGBA() {
 		int result = 0x00000000;
-		result |= this.r;
+		result |= this.a;
+		result <<= 8;
+		result |= (this.r & 0xFF);
 		result <<= 8;
 		result |= (this.g & 0xFF);
 		result <<= 8;
 		result |= (this.b & 0xFF);
-		result <<= 8;
-		result |= (this.a & 0xFF);
 		return result;
 	}
 }
