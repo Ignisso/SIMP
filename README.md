@@ -49,6 +49,80 @@ $ java -jar Editor.jar
 ## Roadmap
 TBA
 
+## Directory & file structure
+```
+.gitignore
+build.bat
+build.sh
+clean.bat
+clean.sh
+README.md
+run.bat
+run.sh
+
+src
+└───main
+    └───java
+        │   MANIFEST.mf
+        │
+        └───com
+            └───editor
+                ├───core
+                │       EditorRuntime.java
+                │       RGBA.java
+                │       Settings.java
+                │
+                ├───effects
+                │       Blackout.java
+                │       Effect.java
+                │
+                ├───history
+                │       Command.java
+                │       EditImageCommand.java
+                │       History.java
+                │       Memento.java
+                │
+                ├───image
+                │       Image.java
+                │       Layer.java
+                │       Workspace.java
+                │
+                ├───tools
+                │       Pen.java
+                │       Shift.java
+                │       Tool.java
+                │       Zoom.java
+                │
+                └───window
+                    │   Entry.java
+                    │   MainBar.java
+                    │   MainWindow.java
+                    │   MainWindowListener.java
+                    │   Window.java
+                    │
+                    ├───edit
+                    │       EntryRedo.java
+                    │       EntryUndo.java
+                    │       MenuEdit.java
+                    │
+                    ├───effects
+                    │       EntryBlackout.java
+                    │       MenuEffects.java
+                    │
+                    ├───file
+                    │       EntryExit.java
+                    │       EntryNew.java
+                    │       EntryOpen.java
+                    │       EntrySave.java
+                    │       EntrySaveAs.java
+                    │       MenuFile.java
+                    │
+                    └───tools
+                            EntryShift.java
+                            EntryZoom.java
+                            MenuTools.java
+```
+
 ## License
 TBA
 

@@ -33,6 +33,10 @@ extends JComponent {
 		this.image.setRGB(x, y, rgb);
 	}
 	
+	public int getRGB(int x, int y) {
+		return this.image.getRGB(x, y);
+	}
+	
 	public Integer getLayerWidth() {
 		return this.image.getWidth();
 	}

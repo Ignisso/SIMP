@@ -14,5 +14,6 @@ extends Effect {
 				active.setRGB(i, j, 0x000000);
 			}
 		}
+		active.update();
 	}
 }
