@@ -1,7 +1,8 @@
-package com.editor.window;
+package com.editor.window.edit;
 
 import javax.swing.*;
 import com.editor.core.*;
+import com.editor.window.*;
 
 public class MenuEdit
 extends JMenu {

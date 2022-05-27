@@ -29,6 +29,18 @@ extends JComponent {
 		this.Y       = 0;
 	}
 	
+	public void setRGB(int x, int y, int rgb) {
+		this.image.setRGB(x, y, rgb);
+	}
+	
+	public Integer getLayerWidth() {
+		return this.image.getWidth();
+	}
+	
+	public Integer getLayerHeight() {
+		return this.image.getHeight();
+	}
+	
 	public void changeVisibility() {
 		this.visible = !this.visible;
 		this.repaint();

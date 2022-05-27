@@ -4,13 +4,13 @@ import com.editor.history.*;
 import com.editor.window.*;
 
 public class EditorRuntime {
-	//private History  history;
+	private History    history;
 	private Settings   settings;
 	private MainWindow mainWindow;
 	
 	public EditorRuntime() {
 		this.mainWindow = new MainWindow(this);
-		//this.history    = new History();
+		this.history    = new History();
 		this.settings   = new Settings(this);
 	}
 	
@@ -23,9 +23,9 @@ public class EditorRuntime {
 		return this.settings;
 	}
 	
-	/*public History getHistory() {
+	public History getHistory() {
 		return this.history;
-	}*/
+	}
 	
 	public MainWindow getWindow() {
 		return this.mainWindow;

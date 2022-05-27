@@ -1,9 +1,10 @@
-package com.editor.window;
+package com.editor.window.file;
 
 import javax.swing.*;
 import java.awt.event.*;
 import com.editor.core.*;
 import java.io.File;
+import com.editor.window.*;
 
 public class EntryOpen
 extends Entry {

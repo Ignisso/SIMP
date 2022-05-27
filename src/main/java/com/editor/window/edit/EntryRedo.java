@@ -1,8 +1,9 @@
-package com.editor.window;
+package com.editor.window.edit;
 
 import javax.swing.*;
 import java.awt.event.*;
 import com.editor.core.*;
+import com.editor.window.*;
 
 public class EntryRedo
 extends Entry {

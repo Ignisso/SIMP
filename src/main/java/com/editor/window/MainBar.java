@@ -2,6 +2,9 @@ package com.editor.window;
 
 import javax.swing.*;
 import com.editor.core.*;
+import com.editor.window.file.*;
+import com.editor.window.edit.*;
+import com.editor.window.tools.*;
 
 public class MainBar
 extends JMenuBar {
@@ -9,7 +12,7 @@ extends JMenuBar {
 		super();
 		add(new MenuFile(root));
 		add(new MenuEdit(root));
-		//add(new MenuTools(root));
+		add(new MenuTools(root));
 		//add(new MenuEffects(root));
 		//add(new MenuView(root));
 		//add(new MenuHelp(root));

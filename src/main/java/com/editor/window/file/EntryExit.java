@@ -1,16 +1,17 @@
-package com.editor.window;
+package com.editor.window.file;
 
 import javax.swing.*;
 import java.awt.event.*;
 import com.editor.core.*;
+import com.editor.window.*;
 
-public class EntrySaveAs
+public class EntryExit
 extends Entry {
-	public EntrySaveAs(EditorRuntime root) {
-		super(root, "Save as");
+	public EntryExit(EditorRuntime root) {
+		super(root, "Exit");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// action
+				System.exit(0);
 			}
 		});
 	}

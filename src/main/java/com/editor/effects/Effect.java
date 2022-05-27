@@ -3,7 +3,7 @@ package com.editor.effects;
 import com.editor.image.*;
 
 public abstract class Effect {
-	private Layer active;
+	protected Layer active;
 	
 	public Effect(Layer layer) {
 		this.active = layer;
