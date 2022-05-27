@@ -5,36 +5,37 @@ import com.editor.image.*;
 import java.awt.event.*;
 import java.awt.Point;
 
-public class Shift
+public class Pipette
 extends Tool {
 	private boolean make;
 	
-	public Shift(EditorRuntime root) {
+	public Pipette(EditorRuntime root) {
 		super(root);
 	}
 	
 	public void mousePressed(MouseEvent e) {
 		this.make = true;
-		Image image = root.getWindow().getWorkspace().getImage();
-		if (image == null)
+		Image img = root.getWindow().getWorkspace().getImage();
+		if (img == null)
+			return;
+		Layer layer = img.getActiveLayer();
+		if (layer == null)
+			return;
+		if (!layer.isVisible())
 			return;
 		
 		Thread t = new Thread() {
 			public void run() {
-				Point beg = image.getMousePosition(true);
-				Integer lxp = image.getXpos();
-				Integer lyp = image.getYpos();
-				Point end = null;
 				while (make) {
-					end = image.getMousePosition(true);
+					Point p = layer.getMousePosition(true);
 					try {
-						Thread.sleep(20);
+						Thread.sleep(100);
 					} catch (Exception e) {
 						System.err.println(e.getMessage());
 					}
-					if (end != null)
-						image.setPosition((int)(end.getX() - beg.getX() + lxp),
-							(int)(end.getY() - beg.getY() + lyp));
+					if (p != null)
+						System.out.printf("%08X\n", layer.getAbsoluteRGB(
+							(int)(p.getX() / img.getScale()), (int)(p.getY() / img.getScale())));
 				}
 			}
 		};

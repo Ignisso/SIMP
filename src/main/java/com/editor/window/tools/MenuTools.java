@@ -10,5 +10,7 @@ extends JMenu {
 		super("Tools");
 		this.add(new EntryShift(root));
 		this.add(new EntryZoom(root));
+		this.add(new EntryLayerShift(root));
+		this.add(new EntryPipette(root));
 	}
 }

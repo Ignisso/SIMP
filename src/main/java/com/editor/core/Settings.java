@@ -12,7 +12,7 @@ public class Settings {
 		this.root       = root;
 		this.color1st   = new RGBA(0x00000000);
 		this.color2nd   = new RGBA(0xFFFFFF00);
-		this.activeTool = new Zoom(root);
+		this.activeTool = new Shift(root);
 	}
 	
 	public void changeTool(Tool tool) {
