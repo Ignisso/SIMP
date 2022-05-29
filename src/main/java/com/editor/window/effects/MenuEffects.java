@@ -13,5 +13,8 @@ extends JMenu {
 		this.add(new EntryTint(root));
 		this.add(new EntryTemperature(root));
 		this.add(new EntryGaussianBlur(root));
+		this.add(new EntryContrast(root));
+		this.add(new EntryBlackAndWhite(root));
+		this.add(new EntryMedianBlur(root));
 	}
 }
