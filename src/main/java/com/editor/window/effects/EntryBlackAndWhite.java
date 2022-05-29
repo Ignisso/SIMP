@@ -15,7 +15,7 @@ public class EntryBlackAndWhite
             public void actionPerformed(ActionEvent e) {
                 Layer l = root.getWindow().getWorkspace().getImage().getActiveLayer();
                 if (l != null)
-                    new BlackAndWhite(l,20);
+                    new BlackAndWhite(l,5).doEffect();
             }
         });
     }

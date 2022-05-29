@@ -23,10 +23,13 @@ public class BlackAndWhite
                 int g = rgb >> 8 & 0xFF;
                 int b = rgb & 0xFF;
                 int grayscale=  (int) (0.299*r) + (int) (0.587*g) +
-                        (int) (0.114*b) + numberOfShades;
+                        (int) (0.114*b) - numberOfShades;
                 r = grayscale;
                 g = grayscale;
                 b = grayscale;
+                r = Math.max(Math.min(255, r), 0);
+                g = Math.max(Math.min(255, g), 0);
+                b = Math.max(Math.min(255, b), 0);
                 rgb = (a << 24) + (r << 16) + (g << 8) + (b);
                 active.setRGB(i, j, rgb);
             }
