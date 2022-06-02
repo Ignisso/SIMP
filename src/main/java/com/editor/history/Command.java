@@ -1,12 +1,14 @@
 package com.editor.history;
 
-import com.editor.image.Image;
+import com.editor.image.*;
 
 public abstract class Command {
-
-	Image img;
-	Memento memento;
-
-	public abstract void execute();
-	public abstract void unExecute();
+	protected String    name;
+	protected Workspace workspace;
+	
+	public Command(Workspace workspace, String name) {
+		this.name      = name;
+		this.workspace = workspace;
+	}
+	public abstract void restore();
 }

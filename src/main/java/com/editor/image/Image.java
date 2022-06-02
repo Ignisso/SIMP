@@ -26,8 +26,8 @@ extends JLayeredPane implements Cloneable {
 		this.Y           = 0;
 	}
 
-	public Object clone() throws CloneNotSupportedException {
-		return super.clone();
+	public Image clone() throws CloneNotSupportedException {
+		return (Image)super.clone();
 	}
 	
 	public double getScale() {

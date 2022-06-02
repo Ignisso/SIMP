@@ -14,7 +14,7 @@ extends Window {
 		super(root, "Image Editor", 1200, 900);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationByPlatform(true);
-		this.workspace = new Workspace(this);
+		this.workspace = new Workspace(this, root);
 		this.setJMenuBar(new MainBar(root));
 		this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
 		this.addComponentListener(new MainWindowListener(this.workspace));

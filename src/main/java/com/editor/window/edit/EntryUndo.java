@@ -9,9 +9,10 @@ public class EntryUndo
 extends Entry {
 	public EntryUndo(EditorRuntime root) {
 		super(root, "Undo");
+		root.getHistory().setUndo(this);
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//this.history.undo()
+				root.getHistory().undo();
 			}
 		});
 	}
