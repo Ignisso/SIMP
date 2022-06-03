@@ -1,5 +1,6 @@
 package com.editor.effects;
 
+import com.editor.core.*;
 import com.editor.image.*;
 
 public class GaussianBlur 
@@ -10,8 +11,8 @@ extends Effect {
 											   {0.01, 0.05, 0.11, 0.05, 0.01},
 											   {0.00, 0.01, 0.01, 0.01, 0.00}};
 
-	public GaussianBlur(Layer layer) {
-		super(layer);
+	public GaussianBlur(EditorRuntime root) {
+		super(root);
 	}
 
 	private int gaussian(int i, int j, int[][] rgb) {

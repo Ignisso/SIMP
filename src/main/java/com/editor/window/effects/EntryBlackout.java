@@ -14,13 +14,7 @@ extends Entry {
 		super(root, "Blackout");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Layer l = root.getWindow().getWorkspace().getImage().getActiveLayer();
-				if (l != null) {
-					new Blackout(l);
-					Command ec = new EditImageCommand(
-						root.getWindow().getWorkspace(), "Blackout");
-					root.getHistory().insert(ec);
-				}
+				new Blackout(root);
 			}
 		});
 	}

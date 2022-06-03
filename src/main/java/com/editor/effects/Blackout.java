@@ -1,11 +1,12 @@
 package com.editor.effects;
 
+import com.editor.core.*;
 import com.editor.image.*;
 
 public class Blackout
 extends Effect {
-	public Blackout(Layer layer) {
-		super(layer);
+	public Blackout(EditorRuntime root) {
+		super(root);
 	}
 	
 	public void doEffect() {

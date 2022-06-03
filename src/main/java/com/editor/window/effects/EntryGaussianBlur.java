@@ -14,13 +14,7 @@ extends Entry {
 		super(root, "GaussianBlur");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Layer l = root.getWindow().getWorkspace().getImage().getActiveLayer();
-				if (l != null) {
-					new GaussianBlur(l);
-					Command ec = new EditImageCommand(
-						root.getWindow().getWorkspace(), "Gaussian Blur");
-					root.getHistory().insert(ec);
-				}
+				new GaussianBlur(root);
 			}
 		});
 	}
