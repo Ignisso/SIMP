@@ -13,9 +13,7 @@ extends Entry {
 		super(root, "Tint");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Layer l = root.getWindow().getWorkspace().getImage().getActiveLayer();
-				if (l != null)
-					new Tint(l, 10).doEffect();
+				new Tint(root, 10);
 			}
 		});
 	}

@@ -13,10 +13,8 @@ public class EntryMedianBlur extends Entry {
         super(root, "MedianBlur");
         this.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Layer l = root.getWindow().getWorkspace().getImage().getActiveLayer();
-                if (l != null)
-                    new MedianBlur(l).doEffect();
-            }
+                new MedianBlur(root);
+			}
         });
     }
 }

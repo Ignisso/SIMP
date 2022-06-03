@@ -1,5 +1,6 @@
 package com.editor.effects;
 
+import com.editor.core.*;
 import com.editor.image.*;
 
 public class Tint 
@@ -7,8 +8,8 @@ extends Effect {
 
 	private int effectStrength;
 	
-	public Tint(Layer layer, int effectStrength) {
-		super(layer);
+	public Tint(EditorRuntime root, int effectStrength) {
+		super(root);
 		this.effectStrength = effectStrength; 
 	}
 	

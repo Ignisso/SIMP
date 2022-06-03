@@ -13,9 +13,7 @@ extends Entry {
 		super(root, "Temperature");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Layer l = root.getWindow().getWorkspace().getImage().getActiveLayer();
-				if (l != null)
-					new Temperature(l, 10).doEffect();
+				new Temperature(root, 10);
 			}
 		});
 	}

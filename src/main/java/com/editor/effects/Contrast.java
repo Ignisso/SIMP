@@ -1,5 +1,6 @@
 package com.editor.effects;
 
+import com.editor.core.*;
 import com.editor.image.*;
 
 public class Contrast
@@ -7,8 +8,8 @@ public class Contrast
 
     private int contrast;
 
-    public Contrast(Layer layer, int contrast) {
-        super(layer);
+    public Contrast(EditorRuntime root, int contrast) {
+        super(root);
         this.contrast = contrast;
     }
 

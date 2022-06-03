@@ -1,5 +1,6 @@
 package com.editor.effects;
 
+import com.editor.core.*;
 import com.editor.image.*;
 
 import java.util.Arrays;
@@ -7,8 +8,8 @@ import java.util.Arrays;
 public class MedianBlur
         extends Effect {
 
-    public MedianBlur(Layer layer) {
-        super(layer);
+    public MedianBlur(EditorRuntime root) {
+        super(root);
     }
 
     static double median(int[] values) {

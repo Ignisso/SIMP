@@ -1,6 +1,6 @@
 package com.editor.effects;
 
-
+import com.editor.core.*;
 import com.editor.image.*;
 
 public class BlackAndWhite
@@ -9,8 +9,8 @@ public class BlackAndWhite
 
     private int numberOfShades;
 
-    public BlackAndWhite(Layer layer, int numberOfShades) {
-        super(layer);
+    public BlackAndWhite(EditorRuntime root, int numberOfShades) {
+        super(root);
         this.numberOfShades = numberOfShades;
     }
 

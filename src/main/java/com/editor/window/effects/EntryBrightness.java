@@ -13,9 +13,7 @@ extends Entry {
 		super(root, "Brightness");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Layer l = root.getWindow().getWorkspace().getImage().getActiveLayer();
-				if (l != null)
-					new Brightness(l, 10).doEffect();
+				new Brightness(root, 10);
 			}
 		});
 	}

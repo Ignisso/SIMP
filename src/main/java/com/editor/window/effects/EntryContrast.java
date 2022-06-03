@@ -13,9 +13,7 @@ public class EntryContrast
         super(root, "Contrast");
         this.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Layer l = root.getWindow().getWorkspace().getImage().getActiveLayer();
-                if (l != null)
-                    new Contrast(l, 10).doEffect();
+                new Contrast(root, 10);
             }
         });
     }
