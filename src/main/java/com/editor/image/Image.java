@@ -48,6 +48,12 @@ extends JLayeredPane implements Cloneable {
 			this.scale, this.X, this.Y);
     }
 	
+	public void setSettings(Image img) {
+		this.scale = img.scale;
+		this.X     = img.X;
+		this.Y     = img.Y;
+	}
+	
 	public double getScale() {
 		return this.scale;
 	}

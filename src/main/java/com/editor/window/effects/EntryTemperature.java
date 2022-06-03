@@ -13,7 +13,9 @@ extends Entry {
 		super(root, "Temperature");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Temperature(root, 10);
+				Effect effect = new Temperature(root, 10);
+				if (effect.isActiveLayer())
+					effect.doEffect();
 			}
 		});
 	}

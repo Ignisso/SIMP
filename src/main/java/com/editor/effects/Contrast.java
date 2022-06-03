@@ -4,15 +4,14 @@ import com.editor.core.*;
 import com.editor.image.*;
 
 public class Contrast
-        extends Effect {
-
+extends Effect {
     private int contrast;
-
+	
     public Contrast(EditorRuntime root, int contrast) {
         super(root);
         this.contrast = contrast;
     }
-
+	
     public void doEffect() {
         for (int i = 0; i < active.getLayerWidth(); i++) {
             for (int j = 0; j < active.getLayerHeight(); j++) {
@@ -34,5 +33,11 @@ public class Contrast
             }
         }
         active.update();
+		addToHistory();
     }
+	
+	@Override
+	public String toString() {
+		return "Contrast";
+	}
 }

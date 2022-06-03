@@ -6,10 +6,10 @@ import com.editor.image.*;
 public class GaussianBlur 
 extends Effect {
 	private static final double[][] matrix = {{0.00, 0.01, 0.01, 0.01, 0.00},
-											   {0.01, 0.05, 0.11, 0.05, 0.01},
-											   {0.01, 0.11, 0.25, 0.11, 0.01},
-											   {0.01, 0.05, 0.11, 0.05, 0.01},
-											   {0.00, 0.01, 0.01, 0.01, 0.00}};
+											  {0.01, 0.05, 0.11, 0.05, 0.01},
+											  {0.01, 0.11, 0.25, 0.11, 0.01},
+											  {0.01, 0.05, 0.11, 0.05, 0.01},
+											  {0.00, 0.01, 0.01, 0.01, 0.00}};
 
 	public GaussianBlur(EditorRuntime root) {
 		super(root);
@@ -33,6 +33,7 @@ extends Effect {
 
 		return (255 << 24) + (resR << 16) + (resG << 8) + (resB);
 	}
+	
 	public void doEffect() {
 		int[][] rgb = new int [active.getLayerWidth()][active.getLayerHeight()];
 		for (int i = 0; i < active.getLayerWidth(); i++) {
@@ -47,5 +48,11 @@ extends Effect {
 			}
 		}
 		active.update();
+		addToHistory();
+	}
+	
+	@Override
+	public String toString() {
+		return "Gaussian Blur";
 	}
 }

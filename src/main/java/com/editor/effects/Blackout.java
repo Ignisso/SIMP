@@ -16,5 +16,11 @@ extends Effect {
 			}
 		}
 		active.update();
+		addToHistory();
+	}
+	
+	@Override
+	public String toString() {
+		return "Blackout";
 	}
 }

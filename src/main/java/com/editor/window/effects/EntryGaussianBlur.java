@@ -6,7 +6,6 @@ import com.editor.core.*;
 import com.editor.window.*;
 import com.editor.image.*;
 import com.editor.effects.*;
-import com.editor.history.*;
 
 public class EntryGaussianBlur
 extends Entry {
@@ -14,7 +13,9 @@ extends Entry {
 		super(root, "GaussianBlur");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new GaussianBlur(root);
+				Effect effect = new GaussianBlur(root);
+				if (effect.isActiveLayer())
+					effect.doEffect();
 			}
 		});
 	}

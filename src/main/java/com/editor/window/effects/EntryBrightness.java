@@ -13,7 +13,9 @@ extends Entry {
 		super(root, "Brightness");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Brightness(root, 10);
+				Effect effect = new Brightness(root, 10);
+				if (effect.isActiveLayer())
+					effect.doEffect();
 			}
 		});
 	}

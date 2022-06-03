@@ -48,7 +48,6 @@ public class History {
 		if (historyPointer < 1)
 			return;
 		historyPointer--;
-		System.out.println("UNDO" + historyPointer);
 		Command command = commandHistory.get(historyPointer);
 		command.restore();
 		this.redo.setEnabled(true);
@@ -67,7 +66,6 @@ public class History {
 		if(historyPointer > commandHistory.size())
 			return;
 		historyPointer++;
-		System.out.println("REDO" + historyPointer);
 		Command command = commandHistory.get(historyPointer);
 		command.restore();
 		this.undo.setEnabled(true);

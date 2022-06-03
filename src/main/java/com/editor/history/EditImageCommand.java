@@ -17,6 +17,8 @@ public class EditImageCommand extends Command {
 	
 	@Override
 	public void restore() {
+		Image savedImage = memento.recallImage();
+		savedImage.setSettings(this.workspace.getImage());
 		workspace.setImage(memento.recallImage());
 	}
 }

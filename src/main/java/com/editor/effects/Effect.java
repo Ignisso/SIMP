@@ -5,18 +5,30 @@ import com.editor.history.*;
 import com.editor.image.*;
 
 public abstract class Effect {
-	protected Layer active;
+	protected EditorRuntime root;
+	protected Layer         active;
+	protected Command       command;
 	
 	public Effect(EditorRuntime root) {
-		Command ec = new EditImageCommand(root.getWindow().getWorkspace(),
+		this.root = root;
+		this.command = new EditImageCommand(root.getWindow().getWorkspace(),
 			this.toString());
-		ec.restore();
+		this.command.restore();
 		this.active = root.getWindow().getWorkspace().getImage().getActiveLayer();
-		this.doEffect();
-		root.getHistory().insert(ec);
 	}
 	
 	public abstract void doEffect();
+	
+	public void addToHistory() {
+		this.root.getHistory().insert(this.command);
+	}
+	
+	public boolean isActiveLayer() {
+		if (this.active == null)
+			return false;
+		return true;
+	}
+	
 	@Override
 	public String toString() {
 		return "Effect";

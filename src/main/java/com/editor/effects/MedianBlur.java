@@ -6,12 +6,12 @@ import com.editor.image.*;
 import java.util.Arrays;
 
 public class MedianBlur
-        extends Effect {
-
+extends Effect {
+	
     public MedianBlur(EditorRuntime root) {
         super(root);
     }
-
+	
     static double median(int[] values) {
         Arrays.sort(values);
         double median;
@@ -25,7 +25,7 @@ public class MedianBlur
         }
         return median;
     }
-
+	
     public void doEffect() {
         int[] tmp = new int[9];
         for (int i = 1; i < active.getLayerWidth()-1; i++) {
@@ -45,5 +45,11 @@ public class MedianBlur
             }
         }
         active.update();
+		addToHistory();
     }
+	
+	@Override
+	public String toString() {
+		return "Median Blur";
+	}
 }

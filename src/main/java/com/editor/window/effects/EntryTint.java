@@ -13,7 +13,9 @@ extends Entry {
 		super(root, "Tint");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new Tint(root, 10);
+				Effect effect = new Tint(root, 10);
+				if (effect.isActiveLayer())
+					effect.doEffect();
 			}
 		});
 	}

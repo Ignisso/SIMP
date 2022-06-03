@@ -5,7 +5,6 @@ import com.editor.image.*;
 
 public class Brightness 
 extends Effect {
-
 	private int effectStrength;
 	
 	public Brightness(EditorRuntime root, int effectStrength) {
@@ -30,5 +29,11 @@ extends Effect {
 			}
 		}
 		active.update();
+		addToHistory();
+	}
+	
+	@Override
+	public String toString() {
+		return "Brightness";
 	}
 }

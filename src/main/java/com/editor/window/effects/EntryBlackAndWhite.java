@@ -8,12 +8,14 @@ import com.editor.image.*;
 import com.editor.effects.*;
 
 public class EntryBlackAndWhite
-        extends Entry {
+extends Entry {
     public EntryBlackAndWhite(EditorRuntime root) {
         super(root, "BlackAndWhite");
         this.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new BlackAndWhite(root,5);
+                Effect effect = new BlackAndWhite(root, 5);
+				if (effect.isActiveLayer())
+					effect.doEffect();
             }
         });
     }

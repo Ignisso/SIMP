@@ -5,7 +5,6 @@ import com.editor.image.*;
 
 public class Tint 
 extends Effect {
-
 	private int effectStrength;
 	
 	public Tint(EditorRuntime root, int effectStrength) {
@@ -34,5 +33,11 @@ extends Effect {
 			}
 		}
 		active.update();
+		addToHistory();
+	}
+	
+	@Override
+	public String toString() {
+		return "Tint";
 	}
 }

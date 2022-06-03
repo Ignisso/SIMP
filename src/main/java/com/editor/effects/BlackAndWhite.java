@@ -4,9 +4,7 @@ import com.editor.core.*;
 import com.editor.image.*;
 
 public class BlackAndWhite
-        extends Effect {
-
-
+extends Effect {
     private int numberOfShades;
 
     public BlackAndWhite(EditorRuntime root, int numberOfShades) {
@@ -35,6 +33,12 @@ public class BlackAndWhite
             }
         }
         active.update();
+		addToHistory();
     }
+	
+	@Override
+	public String toString() {
+		return "Black and White";
+	}
 }
 
