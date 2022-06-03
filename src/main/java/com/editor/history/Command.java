@@ -11,4 +11,9 @@ public abstract class Command {
 		this.workspace = workspace;
 	}
 	public abstract void restore();
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 }

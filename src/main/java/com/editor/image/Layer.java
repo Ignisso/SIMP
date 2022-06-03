@@ -2,7 +2,7 @@ package com.editor.image;
 
 import javax.swing.*;
 import com.editor.window.*;
-import java.awt.image.BufferedImage;
+import java.awt.image.*;
 import java.awt.geom.AffineTransform;
 import java.awt.*;
 
@@ -57,6 +57,33 @@ extends JComponent {
 		this.X       = 0;
 		this.Y       = 0;
 		this.rotate  = 0.f;
+	}
+	
+	private Layer(MainWindow window, boolean visible, Integer index,
+		BufferedImage image, Image parent, Integer X, Integer Y, double rotate) {
+		super();
+		this.window  = window;
+		this.visible = visible;
+		this.index   = index;
+		ColorModel cm = image.getColorModel();
+		boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+		WritableRaster raster = image.copyData(null);
+		BufferedImage clonedImage =
+			new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+		this.image   = clonedImage;
+		this.parent  = parent;
+		this.X       = X;
+		this.Y       = Y;
+		this.rotate  = rotate;
+	}
+	
+	public Layer clone() {
+		return new Layer(this.window, this.visible, this.index, this.image,
+			this.parent, this.X, this.Y, this.rotate);
+	}
+	
+	public void setParent(Image parent) {
+		this.parent = parent;
 	}
 	
 	public void setRGB(int x, int y, int rgb) {
@@ -126,6 +153,10 @@ extends JComponent {
 	
 	public void setIndex(Integer i) {
 		this.index = i;
+	}
+	
+	public Integer getIndex() {
+		return this.index;
 	}
 	
 	public void update() {

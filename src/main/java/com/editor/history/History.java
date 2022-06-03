@@ -17,19 +17,20 @@ public class History {
 	}
 	
 	private void removeAfterPointer(int pointer) {
-		if(commandHistory.size() < 1)
+		if (commandHistory.size() < 1)
 			return;
-		while(commandHistory.size() - 1 > pointer) {
+		while (commandHistory.size() - 1 > pointer)
 			commandHistory.pop();
-		}
 	}
 	
 	public void insert(Command command) {
 		removeAfterPointer(historyPointer);
 		commandHistory.push(command);
 		historyPointer++;
-		if (historyPointer > 0)
+		if (historyPointer > 0) {
 			this.undo.setEnabled(true);
+			this.undo.setText("Undo \"" + commandHistory.get(historyPointer) + "\"");
+		}
 		this.redo.setEnabled(false);
 	}
 	
@@ -47,25 +48,37 @@ public class History {
 		if (historyPointer < 1)
 			return;
 		historyPointer--;
+		System.out.println("UNDO" + historyPointer);
 		Command command = commandHistory.get(historyPointer);
 		command.restore();
 		this.redo.setEnabled(true);
-		if (historyPointer > 1)
+		this.redo.setText("Redo \"" + commandHistory.get(historyPointer + 1) + "\"");
+		if (historyPointer > 0) {
 			this.undo.setEnabled(true);
-		else
+			this.undo.setText("Undo \"" + commandHistory.get(historyPointer) + "\"");
+		}
+		else {
 			this.undo.setEnabled(false);
+			this.undo.setText("Undo");
+		}
 	}
 	
 	public void redo() {
 		if(historyPointer > commandHistory.size())
 			return;
 		historyPointer++;
+		System.out.println("REDO" + historyPointer);
 		Command command = commandHistory.get(historyPointer);
 		command.restore();
 		this.undo.setEnabled(true);
-		if (historyPointer < commandHistory.size() - 1)
+		this.undo.setText("Undo \"" + commandHistory.get(historyPointer));
+		if (historyPointer < commandHistory.size() - 1) {
 			this.redo.setEnabled(true);
-		else
+			this.redo.setText("Redo \"" + commandHistory.get(historyPointer + 1) + "\"");
+		}
+		else {
 			this.redo.setEnabled(false);
+			this.redo.setText("Redo");
+		}
 	}
 }

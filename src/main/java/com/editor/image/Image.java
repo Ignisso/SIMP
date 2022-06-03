@@ -25,10 +25,28 @@ extends JLayeredPane implements Cloneable {
 		this.X           = 0;
 		this.Y           = 0;
 	}
+	
+	private Image(MainWindow window, Integer activeLayer,
+		ArrayList<Layer> layers, double scale, Integer X, Integer Y) {
+        super();
+        this.window      = window;
+        this.activeLayer = activeLayer;
+        this.layers      = new ArrayList<Layer>();
+        for(Layer l : layers) {
+			Layer cloned = l.clone();
+			cloned.setParent(this);
+            this.layers.add(cloned);
+			this.add(cloned, l.getIndex());
+        }
+        this.scale       = scale;
+        this.X           = X;
+        this.Y           = Y;
+    }
 
-	public Image clone() throws CloneNotSupportedException {
-		return (Image)super.clone();
-	}
+    public Image clone() {
+        return new Image(this.window, this.activeLayer, this.layers,
+			this.scale, this.X, this.Y);
+    }
 	
 	public double getScale() {
 		return this.scale;

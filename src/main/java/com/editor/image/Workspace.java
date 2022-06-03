@@ -18,8 +18,7 @@ public class Workspace {
 		this.window = window;
 		this.image  = new Image(window);
 		this.window.add(this.image);
-		this.window.validate();
-		this.window.repaint();
+		this.update();
 	}
 	
 	private void exportWorkspace(String path) throws IOException {
@@ -48,18 +47,14 @@ public class Workspace {
 		Command command = new EditImageCommand(this, "base");
 		this.root.getHistory().insert(command);
 		this.window.add(this.image);
-		this.window.validate();
-		this.window.repaint();
+		this.update();
 	}
 	
 	public void setImage(Image img) {
-		if (img == null)
-			return;
 		this.window.remove(this.image);
 		this.image = img;
 		this.window.add(this.image);
-		this.window.validate();
-		this.window.repaint();
+		this.update();
 	}
 	
 	public Image getImage() {
