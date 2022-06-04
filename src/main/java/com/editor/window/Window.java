@@ -7,7 +7,7 @@ import java.awt.Graphics;
 import java.awt.Color;
 import com.formdev.flatlaf.*;
 
-public abstract class Window
+public class Window
 extends JFrame {
 	public Window(EditorRuntime root, String title, int width, int height) {
 		super(title);
