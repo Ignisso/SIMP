@@ -1,4 +1,3 @@
-src/main/java/com/editor/*.class
 *.jar
 build/
 

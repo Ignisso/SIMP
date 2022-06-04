@@ -2,6 +2,7 @@ package com.editor.core;
 
 import com.editor.history.*;
 import com.editor.window.*;
+import org.opencv.core.*;
 
 public class EditorRuntime {
 	private History    history;
@@ -32,6 +33,7 @@ public class EditorRuntime {
 	}
 	
 	public static void main(String[] args) {
+		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
 		EditorRuntime editor = new EditorRuntime();
 		editor.launch();
 	}
