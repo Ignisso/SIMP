@@ -10,7 +10,7 @@ echo "Packing .class files into .jar..."
 for f in $(find . -name "*.class"); do 
 	echo $f >> sources.list
 done
-jar cmf MANIFEST.mf ../../../target/Editor.jar @sources.list
-echo "Editor.jar jas been generated in ./target"
+jar cmf MANIFEST.mf ../../../build/Editor.jar @sources.list
+echo "Editor.jar jas been generated in ./build"
 rm sources.list
 cd ../../

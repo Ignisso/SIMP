@@ -12,4 +12,9 @@ extends JMenuItem {
 		super(name);
 		this.root = root;
 	}
+	
+	public Entry(EditorRuntime root, String name, Icon icon) {
+		super(name, icon);
+		this.root = root;
+	}
 }

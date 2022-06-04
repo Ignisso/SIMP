@@ -8,9 +8,18 @@ public class MenuTools
 extends JMenu {
 	public MenuTools(EditorRuntime root) {
 		super("Tools");
-		this.add(new EntryShift(root));
-		this.add(new EntryZoom(root));
-		this.add(new EntryLayerShift(root));
-		this.add(new EntryPipette(root));
+		ButtonGroup group = new ButtonGroup();
+		EntryRadio e1 = new EntryShift(root);
+		this.add(e1);
+		group.add(e1);
+		EntryRadio e2 = new EntryZoom(root);
+		this.add(e2);
+		group.add(e2);
+		EntryRadio e3 = new EntryLayerShift(root);
+		this.add(e3);
+		group.add(e3);
+		EntryRadio e4 = new EntryPipette(root);
+		this.add(e4);
+		group.add(e4);
 	}
 }

@@ -4,8 +4,6 @@ import javax.swing.*;
 import com.editor.window.*;
 import java.util.ArrayList;
 import java.awt.image.BufferedImage;
-import java.awt.Graphics;
-import java.awt.Color;
 
 public class Image
 extends JLayeredPane implements Cloneable {
@@ -111,11 +109,5 @@ extends JLayeredPane implements Cloneable {
 			this.window.validate();
 			this.window.repaint();
 		}
-	}
-	
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		g.setColor(new Color(0x1E1E22));
-		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 	}
 }

@@ -7,9 +7,9 @@ import com.editor.tools.*;
 import com.editor.window.*;
 
 public class EntryShift
-extends Entry {
+extends EntryRadio {
 	public EntryShift(EditorRuntime root) {
-		super(root, "Shift");
+		super(root, "Shift", true);
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				root.getSettings().changeTool(new Shift(root));

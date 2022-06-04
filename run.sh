@@ -1,1 +1,1 @@
-java -jar target/Editor.jar
+java -jar build/Editor.jar

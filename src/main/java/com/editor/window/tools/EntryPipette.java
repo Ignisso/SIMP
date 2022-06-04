@@ -7,9 +7,9 @@ import com.editor.tools.*;
 import com.editor.window.*;
 
 public class EntryPipette
-extends Entry {
+extends EntryRadio {
 	public EntryPipette(EditorRuntime root) {
-		super(root, "Pipette");
+		super(root, "Pipette", false);
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				root.getSettings().changeTool(new Pipette(root));

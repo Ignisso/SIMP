@@ -7,9 +7,9 @@ import com.editor.tools.*;
 import com.editor.window.*;
 
 public class EntryZoom
-extends Entry {
+extends EntryRadio {
 	public EntryZoom(EditorRuntime root) {
-		super(root, "Zoom");
+		super(root, "Zoom", false);
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				root.getSettings().changeTool(new Zoom(root));

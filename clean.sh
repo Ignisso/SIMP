@@ -1,2 +1,2 @@
-find . -type f -name "*.class" -delete
+find src/main/java/com/editor -type f -name "*.class" -delete
 echo Process finished...

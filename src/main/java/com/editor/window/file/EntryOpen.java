@@ -5,11 +5,12 @@ import java.awt.event.*;
 import com.editor.core.*;
 import java.io.File;
 import com.editor.window.*;
+import com.formdev.flatlaf.icons.*;
 
 public class EntryOpen
 extends Entry {
 	public EntryOpen(EditorRuntime root) {
-		super(root, "Open");
+		super(root, "Open", new FlatTreeOpenIcon());
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFileChooser open = new JFileChooser();
