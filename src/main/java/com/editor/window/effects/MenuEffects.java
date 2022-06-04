@@ -2,6 +2,7 @@ package com.editor.window.effects;
 
 import javax.swing.*;
 import com.editor.core.*;
+import com.editor.effects.Cartoon;
 import com.editor.effects.Damager;
 import com.editor.window.*;
 
@@ -18,7 +19,7 @@ extends JMenu {
 		this.add(new EntryContrast(root));
 		this.add(new EntryBlackAndWhite(root));
 		this.add(new EntryMedianBlur(root));
-		this.add(new EntryDamager(root));
+		this.add(new EntryCartoon(root));
 
 	}
 }

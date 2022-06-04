@@ -81,7 +81,15 @@ extends JComponent {
 		return new Layer(this.window, this.visible, this.index, this.image,
 			this.parent, this.X, this.Y, this.rotate);
 	}
-	
+
+	public BufferedImage getImage() {
+		return this.image;
+	}
+
+	public void setImage(BufferedImage image) {
+		this.image = image;
+	}
+
 	public void setParent(Image parent) {
 		this.parent = parent;
 	}
