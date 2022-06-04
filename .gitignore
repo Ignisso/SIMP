@@ -1,6 +1,6 @@
-*.class
+src/main/java/com/editor/*.class
 *.jar
-target/
+build/
 
 # IntelijIdea files
 .idea/
