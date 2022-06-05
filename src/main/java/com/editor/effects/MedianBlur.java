@@ -98,9 +98,10 @@ extends Effect {
             for (int j = 0; j < active.getLayerHeight(); j++) {
                 active.setRGB(i, j, tmp2[i][j]);
             }
-            active.update();
         }
-    }
+		active.update();
+		addToHistory();
+	}
 	
 	@Override
 	public String toString() {

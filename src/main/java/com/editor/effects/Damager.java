@@ -9,14 +9,16 @@ public class Damager
     public Damager(EditorRuntime root) {
         super(root);
     }
+	
     private int randomRGB(int min, int max)
     {
-        int random= (int)Math.floor(Math.random()*(max-min+1)+min);
+        int random = (int)Math.floor(Math.random()*(max-min+1)+min);
         return random;
     }
+	
     public void doEffect() {
-        for (int i = randomRGB(5,10); i < active.getLayerWidth(); i+=6) {
-            for (int j =randomRGB(1,4); j < active.getLayerHeight(); j+=7) {
+        for (int i = 0; i < active.getLayerWidth(); i++) {
+            for (int j = randomRGB(1, 10); j < active.getLayerHeight(); j+=randomRGB(1, 10)) {
                 int rgb = active.getRGB(i, j);
                 int a = rgb >> 24 & 0xFF;
                 int r = randomRGB(0,255);
