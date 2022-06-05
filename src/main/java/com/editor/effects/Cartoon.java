@@ -21,8 +21,6 @@ public class Cartoon
 	}
 	public Mat edgeMask(Mat img, int lineSize, int blurSize)
 	{
-		Mat dest = new Mat();
-		Imgproc.cvtColor(img,dest,Imgproc.COLOR_BGR2GRAY);
 		Mat gray = new Mat();
 		Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
 		Mat grayBlur = new Mat();
@@ -34,7 +32,7 @@ public class Cartoon
 		Imgproc.bilateralFilter(edges, colorImg, lineSize, 250, 250);
 		Mat appliedEdges= new Mat();
 		Core.bitwise_and(colorImg, edges, appliedEdges);
-		Imgproc.cvtColor(edges,edges,Imgproc.COLOR_GRAY2RGB);
+		Imgproc.cvtColor(edges, edges,Imgproc.COLOR_GRAY2RGB);
 		return edges;
 	}
 
@@ -45,21 +43,7 @@ public class Cartoon
 		Mat imgColor = new Mat();
 		imgColor = img;
 		Mat dest = new Mat();
-		Imgproc.bilateralFilter(imgColor, imgColor, numberOfColors,9,7);
-
-		for(int i=0; i<numDown; i++)
-		{
-			Imgproc.pyrDown(imgColor, imgColor);
-		}
-		for (int i=0; i<3; i++)
-		{
-			Imgproc.bilateralFilter(imgColor, dest, numberOfColors,9,7);
-		}
-
-		for(int i=0; i<numDown; i++)
-		{
-			Imgproc.pyrUp(dest, dest);
-		}
+		Imgproc.bilateralFilter(imgColor, dest, numberOfColors,9,7);
 		Mat gray = new Mat();
 		Imgproc.cvtColor(dest, gray, Imgproc.COLOR_RGB2GRAY);
 		Mat blurred = new Mat();
@@ -70,22 +54,21 @@ public class Cartoon
 
 	public Mat cartoon(Mat img, int lineSize, int blurSize)
 	{
-		Mat edges = edgeMask(img, lineSize,blurSize);
+		Mat edges = edgeMask(img, lineSize, blurSize);
 		Mat lessColors = lessColors(img, 9);
-		Imgproc.cvtColor(edges,edges, Imgproc.COLOR_GRAY2RGB);
+		Imgproc.cvtColor(edges, edges, Imgproc.COLOR_RGB2GRAY);
 		Mat cartoon = new Mat();
 		Core.bitwise_and(edges, lessColors, cartoon);
 		return cartoon;
-
 	}
 
 
 	public void doEffect() {
-
 		BufferedImage inBufferedImage = active.getImage();
 		Mat img = Convert.img2Mat(inBufferedImage);
 		Imgproc.cvtColor(img,img,Imgproc.COLOR_BGRA2BGR);
-		Mat effect = cartoon(img, 9,3);
+		Mat effect = cartoon(img, 9, 3);
+		Imgproc.cvtColor(effect, effect, Imgproc.COLOR_GRAY2RGBA);
 		BufferedImage outBufferedImage = Convert.mat2Img(effect);
 		active.setImage(outBufferedImage);
 		active.update();
