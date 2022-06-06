@@ -18,7 +18,8 @@ public abstract class Effect {
 			this.toString());
 		this.command.restore();
 		this.active = root.getWindow().getWorkspace().getImage().getActiveLayer();
-		DialogBox db = new DialogBox(root.getWindow(), this.toString() + " progress...");
+		DialogBox db = new DialogBox(root.getWindow(), this.toString() + " progress...",
+			DialogBox.MB_CANCEL);
 		this.progress = new JProgressBar(0);
 		progress.setMinimum(0);
 		progress.setStringPainted(true);

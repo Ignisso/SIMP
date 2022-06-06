@@ -14,67 +14,75 @@ import java.awt.image.DataBufferByte;
 
 
 public class Cartoon
-		extends Effect {
-
+extends Effect {
+	private Integer lineSize;
+	private Integer lineBlur;
+	private Integer imgBlur;
+	private Integer diameter;
+	private Integer radius;
+	
 	public Cartoon(EditorRuntime root) {
 		super(root);
+		this.lineSize = 7;
+		this.lineBlur = 5;
+		this.imgBlur  = 7;
+		this.diameter = 15;
+		this.radius   = 30;
 	}
-	public Mat edgeMask(Mat img, int lineSize, int blurSize)
-	{
+	
+	public Cartoon(EditorRuntime root, Integer ls, Integer lb, Integer ib,
+		Integer d, Integer r) {
+		super(root);
+		this.lineSize = ls;
+		this.lineBlur = lb;
+		this.imgBlur  = ib;
+		this.diameter = d;
+		this.radius   = r;
+	}
+	
+	private Mat edgeMask(Mat img) {
 		Mat gray = new Mat();
 		Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
 		Mat grayBlur = new Mat();
-		Imgproc.medianBlur(gray, grayBlur, blurSize);
+		Imgproc.medianBlur(gray, grayBlur, this.lineBlur);
 		Mat edges = new Mat();
 		Imgproc.adaptiveThreshold(grayBlur,edges, 255, Imgproc.ADAPTIVE_THRESH_MEAN_C,
-				Imgproc.THRESH_BINARY, lineSize, blurSize);
+			Imgproc.THRESH_BINARY, this.lineSize, this.lineBlur);
 		Mat colorImg = new Mat();
-		Imgproc.bilateralFilter(edges, colorImg, lineSize, 250, 250);
-		Mat appliedEdges= new Mat();
+		Imgproc.bilateralFilter(edges, colorImg, this.lineSize, this.radius, this.radius);
+		Mat appliedEdges = new Mat();
 		Core.bitwise_and(colorImg, edges, appliedEdges);
-		Imgproc.cvtColor(edges, edges,Imgproc.COLOR_GRAY2RGB);
+		Imgproc.cvtColor(edges, edges, Imgproc.COLOR_GRAY2RGB);
 		return edges;
 	}
-
-	public Mat lessColors(Mat img, int numberOfColors)
-	{
-		Imgproc.cvtColor(img,img,Imgproc.COLOR_BGRA2BGR);
-		int numDown = 2;
-		Mat imgColor = new Mat();
-		imgColor = img;
+	
+	private Mat lessColors(Mat img) {
+		Imgproc.cvtColor(img, img, Imgproc.COLOR_BGRA2BGR);
 		Mat dest = new Mat();
-		Imgproc.bilateralFilter(imgColor, dest, numberOfColors,9,7);
-		Mat gray = new Mat();
-		Imgproc.cvtColor(dest, gray, Imgproc.COLOR_RGB2GRAY);
+		Imgproc.bilateralFilter(img, dest, this.diameter, this.radius, this.radius);
 		Mat blurred = new Mat();
-		Imgproc.medianBlur(gray,blurred,7);
-
+		Imgproc.medianBlur(dest, blurred, this.imgBlur);
 		return blurred;
 	}
-
-	public Mat cartoon(Mat img, int lineSize, int blurSize)
-	{
-		Mat edges = edgeMask(img, lineSize, blurSize);
-		Mat lessColors = lessColors(img, 9);
-		Imgproc.cvtColor(edges, edges, Imgproc.COLOR_RGB2GRAY);
+	
+	private Mat cartoon(Mat img) {
+		Mat edges = edgeMask(img);
+		Mat lessColors = lessColors(img);
 		Mat cartoon = new Mat();
 		Core.bitwise_and(edges, lessColors, cartoon);
 		return cartoon;
 	}
-
-
+	
 	public void doEffect() {
 		BufferedImage inBufferedImage = active.getImage();
 		Mat img = Convert.img2Mat(inBufferedImage);
-		Imgproc.cvtColor(img,img,Imgproc.COLOR_BGRA2BGR);
-		Mat effect = cartoon(img, 9, 3);
-		Imgproc.cvtColor(effect, effect, Imgproc.COLOR_GRAY2RGBA);
+		Mat effect = cartoon(img);
 		BufferedImage outBufferedImage = Convert.mat2Img(effect);
 		active.setImage(outBufferedImage);
 		active.update();
 		addToHistory();
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Cartoon";

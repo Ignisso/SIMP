@@ -14,7 +14,8 @@ extends Entry {
 		super(root, "Blackout");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DialogBox db = new DialogBox(root.getWindow(), "Effect Blackout");
+				DialogBox db = new DialogBox(root.getWindow(), "Effect Blackout",
+					DialogBox.MB_APPLY | DialogBox.MB_CANCEL);
 				InteractiveSlider is = new InteractiveSlider("Pixel Distance:", 1, 255);
 				db.addApplet(is);
 				JSlider js = new JSlider(1, 255);
@@ -22,7 +23,7 @@ extends Entry {
 				JComponent[] group = {js, text};
 				db.addApplet(group);
 				db.finish();
-				db.doAction(new ActionListener() {
+				db.doApply(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						db.close();
 						Effect effect = new Blackout(root, is.getValue());
