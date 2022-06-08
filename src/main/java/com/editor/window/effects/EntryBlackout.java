@@ -18,10 +18,6 @@ extends Entry {
 					DialogBox.MB_APPLY | DialogBox.MB_CANCEL);
 				InteractiveSlider is = new InteractiveSlider("Pixel Distance:", 1, 255);
 				db.addApplet(is);
-				JSlider js = new JSlider(1, 255);
-				JTextArea text = new JTextArea(Integer.toString(js.getValue()));
-				JComponent[] group = {js, text};
-				db.addApplet(group);
 				db.finish();
 				db.doApply(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {

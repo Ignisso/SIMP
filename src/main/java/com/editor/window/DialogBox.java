@@ -14,6 +14,7 @@ extends JDialog {
 	private JPanel  panel;
 	private Window  parent;
 	private JButton apply;
+	private JButton cancel;
 	private Integer buttons;
 	
 	public DialogBox(Window window, String title) {
@@ -50,7 +51,7 @@ extends JDialog {
 	}
 	
 	public void doCancel(ActionListener listener) {
-		this.apply.addActionListener(listener);
+		this.cancel.addActionListener(listener);
 	}
 	
 	public void close() {
@@ -66,7 +67,7 @@ extends JDialog {
 				row.add(this.apply);
 			}
 			if ((this.buttons & MB_CANCEL) != 0) {
-				JButton cancel = new JButton("Canel");
+				this.cancel = new JButton("Canel");
 				cancel.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

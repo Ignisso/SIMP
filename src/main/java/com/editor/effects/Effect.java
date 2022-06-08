@@ -1,16 +1,19 @@
 package com.editor.effects;
 
+import javax.swing.*;
+import java.awt.event.*;
 import com.editor.core.*;
 import com.editor.history.*;
 import com.editor.image.*;
 import com.editor.window.*;
-import javax.swing.JProgressBar;
 
 public abstract class Effect {
 	protected EditorRuntime root;
 	protected Layer         active;
 	protected Command       command;
 	protected JProgressBar  progress;
+	protected DialogBox     db;
+	protected EffectsWorker thread;
 	
 	public Effect(EditorRuntime root) {
 		this.root = root;
@@ -18,34 +21,48 @@ public abstract class Effect {
 			this.toString());
 		this.command.restore();
 		this.active = root.getWindow().getWorkspace().getImage().getActiveLayer();
-		DialogBox db = new DialogBox(root.getWindow(), this.toString() + " progress...",
+		this.db = new DialogBox(root.getWindow(), this.toString() + " progress...",
 			DialogBox.MB_CANCEL);
 		this.progress = new JProgressBar(0);
+		this.progress.setMaximum(100);
 		progress.setMinimum(0);
 		progress.setStringPainted(true);
 		progress.setVisible(true);
 		db.addApplet(this.progress);
 		db.finish();
-		this.progress.setSize(300, 40);
+		this.thread = new EffectsWorker(this);
+		db.doCancel(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				thread.cancel(true);
+			}
+		});
 	}
 	
-	public abstract void doEffect();
-	
-	public void setMaxProgress(Integer max) {
-		this.progress.setMaximum(max);
+	public void doEffect() {
+		thread.execute();
 	}
 	
-	public void setProgress(Integer progress) {
+	public void process() {
+		
+	}
+	
+	public void closeDialog() {
+		this.db.close();
+	}
+	
+	protected void setProgress(Integer progress) {
 		this.progress.setValue(progress);
-		this.progress.repaint();
+		if (this.thread.isCancelled())
+			throw new InterruptSignal();
 	}
 	
-	public void incrementProgress() {
-		this.progress.setValue(this.progress.getValue() + 1);
-		this.progress.repaint();
+	protected void addProgress(Integer progress) {
+		this.progress.setValue(this.progress.getValue() + progress);
+		if (this.thread.isCancelled())
+			throw new InterruptSignal();
 	}
 	
-	public void addToHistory() {
+	protected void addToHistory() {
 		this.root.getHistory().insert(this.command);
 	}
 	

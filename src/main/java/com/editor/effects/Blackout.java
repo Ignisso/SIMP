@@ -17,18 +17,16 @@ extends Effect {
 		this.step = step;
 	}
 	
-	public void doEffect() {
-		Integer max = active.getLayerWidth() / this.step;
-		max *= (active.getLayerHeight() / this.step);
-		setMaxProgress(max);
+	public void process() {
 		for (int i = 0; i < active.getLayerWidth(); i+=this.step) {
 			for (int j = 0; j < active.getLayerHeight(); j+=this.step) {
 				active.setRGB(i, j, 0xFF000000);
-				incrementProgress();
 			}
+			addProgress((active.getLayerWidth() / this.step) / 100);
 		}
 		active.update();
-		addToHistory();
+		setProgress(100);
+		addToHistory();		
 	}
 	
 	@Override
