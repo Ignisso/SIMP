@@ -26,10 +26,11 @@ extends Effect {
         return median;
     }
 
-    public void doEffect() {
+    public void process() {
         int[] tmp = new int[9];
         int[][] tmp2 = new int[active.getLayerWidth()][active.getLayerHeight()];
         for (int i = 1; i < active.getLayerWidth() - 1; i++) {
+            setProgress(100 * (i+1)/active.getLayerWidth());
             for (int j = 1; j < active.getLayerHeight() - 1; j++) {
                 tmp[0] = active.getRGB(i - 1, j - 1);
                 tmp[1] = active.getRGB(i - 1, j);

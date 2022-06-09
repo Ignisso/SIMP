@@ -34,15 +34,17 @@ extends Effect {
 		return (255 << 24) + (resR << 16) + (resG << 8) + (resB);
 	}
 	
-	public void doEffect() {
+	public void process() {
 		int[][] rgb = new int [active.getLayerWidth()][active.getLayerHeight()];
 		for (int i = 0; i < active.getLayerWidth(); i++) {
+			setProgress(20 * (i+1)/active.getLayerWidth());
 			for (int j = 0; j < active.getLayerHeight(); j++) {
 				rgb[i][j] = active.getRGB(i, j);
 			}
 		}
 
 		for (int i = 0; i < active.getLayerWidth(); i++) {
+			setProgress(20 + 80 * (i+1)/active.getLayerWidth());
 			for (int j = 0; j < active.getLayerHeight(); j++) {
 				active.setRGB(i, j, gaussian(i, j, rgb));
 			}

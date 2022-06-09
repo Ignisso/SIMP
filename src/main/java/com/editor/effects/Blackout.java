@@ -16,16 +16,14 @@ extends Effect {
 		super(root);
 		this.step = step;
 	}
-	
 	public void process() {
 		for (int i = 0; i < active.getLayerWidth(); i+=this.step) {
+			setProgress(100 * (i+1)/active.getLayerWidth());
 			for (int j = 0; j < active.getLayerHeight(); j+=this.step) {
 				active.setRGB(i, j, 0xFF000000);
 			}
-			addProgress((active.getLayerWidth() / this.step) / 100);
 		}
 		active.update();
-		setProgress(100);
 		addToHistory();		
 	}
 	
