@@ -7,13 +7,13 @@ import com.editor.window.*;
 import com.formdev.flatlaf.*;
 import com.formdev.flatlaf.intellijthemes.*;
 
-public class EntryDark
+public class EntryFlatGradiantoNatureGreenIJ
 extends EntryRadio {
-	public EntryDark(EditorRuntime root) {
-		super(root, "FlatLaf Dark", true);
+	public EntryFlatGradiantoNatureGreenIJ(EditorRuntime root) {
+		super(root, "FlatGradiantoNatureGreenIJ", false);
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				root.getWindow().setTheme(new FlatDarkLaf(), 0x2E2E32);
+				root.getWindow().setTheme(new FlatGradiantoNatureGreenIJTheme(), 0xDDDDDD);
 			}
 		});
 	}
