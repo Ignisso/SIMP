@@ -15,6 +15,7 @@ extends Tool {
 	
 	public void mousePressed(MouseEvent e) {
 		this.make = true;
+		createHistoryEntry();
 		Workspace workspace = root.getWindow().getWorkspace();
 		Image image = workspace.getImage();
 		if (image == null)
@@ -51,5 +52,11 @@ extends Tool {
 	
 	public void mouseReleased(MouseEvent e) {
 		this.make = false;
+		addToHistory();
+	}
+	
+	@Override
+	public String toString() {
+		return "Layer Shift";
 	}
 }
