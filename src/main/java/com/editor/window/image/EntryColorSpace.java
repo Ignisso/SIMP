@@ -26,13 +26,13 @@ extends Entry {
 						try {
 							switch(ir.getValue()) {
 								case 0:
-									root.getWindow().getWorkspace().getImage().setChannels(1);
+									root.getWindow().getWorkspace().getImage().setChannels(BufferedImage.TYPE_BYTE_GRAY);
 								case 1:
-									root.getWindow().getWorkspace().getImage().setChannels(3);
+									root.getWindow().getWorkspace().getImage().setChannels(BufferedImage.TYPE_3BYTE_BGR);
 								case 2:
-									root.getWindow().getWorkspace().getImage().setChannels(4);
+									root.getWindow().getWorkspace().getImage().setChannels(BufferedImage.TYPE_4BYTE_ABGR);
 								default:
-									root.getWindow().getWorkspace().getImage().setChannels(4);
+									root.getWindow().getWorkspace().getImage().setChannels(BufferedImage.TYPE_4BYTE_ABGR);
 							}
 						} catch (Exception ex) {
 							JOptionPane.showMessageDialog(root.getWindow(), ex.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
