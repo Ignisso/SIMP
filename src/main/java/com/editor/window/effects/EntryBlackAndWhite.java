@@ -15,7 +15,7 @@ extends Entry {
             public void actionPerformed(ActionEvent e) {
                 Effect effect = new BlackAndWhite(root, 5);
 				if (effect.isActiveLayer())
-					effect.doEffect();
+					effect.process();
             }
         });
     }

@@ -34,7 +34,7 @@ extends Effect {
 		return (255 << 24) + (resR << 16) + (resG << 8) + (resB);
 	}
 	
-	public void doEffect() {
+	public void process() {
 		int[][] rgb = new int [active.getLayerWidth()][active.getLayerHeight()];
 		for (int i = 0; i < active.getLayerWidth(); i++) {
 			for (int j = 0; j < active.getLayerHeight(); j++) {

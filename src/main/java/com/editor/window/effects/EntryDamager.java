@@ -15,7 +15,7 @@ public class EntryDamager
             public void actionPerformed(ActionEvent e) {
                 Effect effect = new Damager(root);
                 if (effect.isActiveLayer())
-                    effect.doEffect();
+                    effect.process();
             }
         });
     }

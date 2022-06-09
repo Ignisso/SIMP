@@ -26,7 +26,7 @@ extends Effect {
         return median;
     }
 
-    public void doEffect() {
+    public void process() {
         int[] tmp = new int[9];
         int[][] tmp2 = new int[active.getLayerWidth()][active.getLayerHeight()];
         for (int i = 1; i < active.getLayerWidth() - 1; i++) {

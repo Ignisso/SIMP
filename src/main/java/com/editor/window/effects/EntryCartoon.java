@@ -33,7 +33,7 @@ extends Entry {
 						Effect effect = new Cartoon(root, ls.getValue(), lb.getValue(),
 							ib.getValue(), d.getValue(), r.getValue());
 						if (effect.isActiveLayer()) {
-							effect.doEffect();
+							effect.process();
 						}
 					}
 				});

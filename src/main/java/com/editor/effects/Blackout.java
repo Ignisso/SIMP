@@ -16,7 +16,6 @@ extends Effect {
 		super(root);
 		this.step = step;
 	}
-	
 	public void process() {
 		for (int i = 0; i < active.getLayerWidth(); i+=this.step) {
 			for (int j = 0; j < active.getLayerHeight(); j+=this.step) {

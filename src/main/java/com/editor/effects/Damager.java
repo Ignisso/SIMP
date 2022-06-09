@@ -16,7 +16,7 @@ public class Damager
         return random;
     }
 	
-    public void doEffect() {
+    public void process() {
         for (int i = 0; i < active.getLayerWidth(); i++) {
             for (int j = randomRGB(1, 10); j < active.getLayerHeight(); j+=randomRGB(1, 10)) {
                 int rgb = active.getRGB(i, j);

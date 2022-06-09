@@ -38,12 +38,8 @@ public abstract class Effect {
 		});
 	}
 	
-	public void doEffect() {
-		thread.execute();
-	}
-	
 	public void process() {
-		
+		thread.execute();
 	}
 	
 	public void closeDialog() {
@@ -52,12 +48,14 @@ public abstract class Effect {
 	
 	protected void setProgress(Integer progress) {
 		this.progress.setValue(progress);
+		System.out.println(this.progress.getValue());
 		if (this.thread.isCancelled())
 			throw new InterruptSignal();
 	}
 	
 	protected void addProgress(Integer progress) {
 		this.progress.setValue(this.progress.getValue() + progress);
+		System.out.println(this.progress.getValue());
 		if (this.thread.isCancelled())
 			throw new InterruptSignal();
 	}

@@ -15,7 +15,7 @@ public class EntryPencilSketch
             public void actionPerformed(ActionEvent e) {
                 Effect effect = new PencilSketch(root);
                 if (effect.isActiveLayer())
-                    effect.doEffect();
+                    effect.process();
             }
         });
     }

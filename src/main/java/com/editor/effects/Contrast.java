@@ -12,7 +12,7 @@ extends Effect {
         this.contrast = contrast;
     }
 	
-    public void doEffect() {
+    public void process() {
         for (int i = 0; i < active.getLayerWidth(); i++) {
             for (int j = 0; j < active.getLayerHeight(); j++) {
                 int rgb = active.getRGB(i, j);
