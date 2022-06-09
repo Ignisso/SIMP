@@ -32,7 +32,7 @@ extends Tool {
 				Point old = null;
 				while (make) {
 					try {
-						Thread.sleep(20);
+						Thread.sleep(1);
 					} catch (Exception e) {
 						System.err.println(e.getMessage());
 					}
@@ -90,7 +90,7 @@ extends Tool {
 			public void run() {
 				while (make) {
 					try {
-						Thread.sleep(50);
+						Thread.sleep(30);
 					} catch (Exception e) {
 						System.err.println(e.getMessage());
 					}
