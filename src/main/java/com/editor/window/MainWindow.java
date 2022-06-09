@@ -11,7 +11,7 @@ extends Window {
 	private Workspace workspace;
 	
 	public MainWindow(EditorRuntime root) {
-		super(root, "Image Editor", 1200, 900);
+		super(root, "SIMP - Simple Image Modifying Program", 1200, 900);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationByPlatform(true);
 		this.workspace = new Workspace(this, root);

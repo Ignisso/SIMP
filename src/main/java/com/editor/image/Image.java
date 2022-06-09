@@ -229,29 +229,25 @@ extends JComponent implements Cloneable {
 			l.update();
 	}
 	
-	public void zoomOut(Integer x, Integer y) {
-		if (this.scale > 0.01f) {
-			this.scale -= (this.scale * 0.15f);
-			this.X -= x - this.window.getWorkspace().getWidth();
-			this.Y -= y - this.window.getWorkspace().getHeight();
-			Integer dispSizeX = (int)(this.width * this.getScale());
-			Integer dispSizeY = (int)(this.height * this.getScale());
-			this.setBounds(this.X, this.Y, dispSizeX, dispSizeY);
-			this.update();
-		}
-	}
-	
-	public void zoomIn(Integer x, Integer y) {
-		if (this.scale < 100.f) {
-			this.scale += (this.scale * 0.15f);
-			this.X += x - this.window.getWorkspace().getWidth();
-			this.Y += y - this.window.getWorkspace().getHeight();
-			Integer dispSizeX = (int)(this.width * this.getScale());
-			Integer dispSizeY = (int)(this.height * this.getScale());
-			this.setBounds(this.X, this.Y, dispSizeX, dispSizeY);
-			this.update();
-		}
-	}
+    public void zoomOut(Integer x, Integer y) {
+        if (this.scale > 0.01f) {
+            this.scale -= (this.scale * 0.15f);
+            this.X += (int)((x - this.getWidth() / 2) * 0.15f);
+            this.Y += (int)((y - this.getHeight() / 2) * 0.15f);
+            this.setSize((int)(this.width * this.scale), (int)(this.height * this.scale));
+            this.update();
+        }
+    }
+    
+    public void zoomIn(Integer x, Integer y) {
+        if (this.scale < 100.f) {
+            this.scale += (this.scale * 0.15f);
+            this.X += (int)((this.getWidth() / 2 - x) * 0.15f);
+            this.Y += (int)((this.getHeight() / 2 - y) * 0.15f);
+            this.setSize((int)(this.width * this.scale), (int)(this.height * this.scale));
+            this.update();
+        }
+    }
 	
 	@Override
 	public void paintComponent(Graphics g) {
