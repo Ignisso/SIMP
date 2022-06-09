@@ -7,13 +7,13 @@ import com.editor.window.*;
 import com.formdev.flatlaf.*;
 import com.formdev.flatlaf.intellijthemes.*;
 
-public class EntryDark
+public class EntryFlatDraculaIJ
 extends EntryRadio {
-	public EntryDark(EditorRuntime root) {
-		super(root, "FlatLaf Dark", true);
+	public EntryFlatDraculaIJ(EditorRuntime root) {
+		super(root, "FlatDraculaIJ", false);
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				root.getWindow().setTheme(new FlatDarkLaf(), 0x2E2E32);
+				root.getWindow().setTheme(new FlatDraculaIJTheme(), 0xDDDDDD);
 			}
 		});
 	}
