@@ -10,9 +10,14 @@ extends Effect {
 											  {0.01, 0.11, 0.25, 0.11, 0.01},
 											  {0.01, 0.05, 0.11, 0.05, 0.01},
 											  {0.00, 0.01, 0.01, 0.01, 0.00}};
+	private Integer size;
 
 	public GaussianBlur(EditorRuntime root) {
 		super(root);
+	}
+	public GaussianBlur(EditorRuntime root, Integer size) {
+		super(root);
+		this.size = size;
 	}
 
 	private int gaussian(int i, int j, int[][] rgb) {
@@ -34,7 +39,7 @@ extends Effect {
 		return (255 << 24) + (resR << 16) + (resG << 8) + (resB);
 	}
 	
-	public void doEffect() {
+	public void doGaussian() {
 		int[][] rgb = new int [active.getLayerWidth()][active.getLayerHeight()];
 		for (int i = 0; i < active.getLayerWidth(); i++) {
 			for (int j = 0; j < active.getLayerHeight(); j++) {
@@ -47,7 +52,17 @@ extends Effect {
 				active.setRGB(i, j, gaussian(i, j, rgb));
 			}
 		}
+	}
+
+	public void process()
+	{
+		for(int i = 0; i<this.size; i++)
+		{
+			doGaussian();
+			addProgress(100/this.size);
+		}
 		active.update();
+		setProgress(100);
 		addToHistory();
 	}
 	

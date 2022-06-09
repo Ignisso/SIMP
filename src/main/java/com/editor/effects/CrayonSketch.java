@@ -22,25 +22,22 @@ public class CrayonSketch
     }
 
 
-    public void doEffect() {
+    public void process() {
         BufferedImage inBufferedImage = active.getImage();
+        addProgress(14);
         Mat img = Convert.img2Mat(inBufferedImage);
+        addProgress(12);
         Imgproc.cvtColor(img,img,Imgproc.COLOR_BGRA2BGR);
-        /*
-        Mat invertedImg= new Mat();
-        Core.bitwise_not(img,invertedImg);
-        Mat blurred = new Mat();
-        Imgproc.GaussianBlur(invertedImg, blurred, new Size(21,21), 0,0);
-        Mat invertedBlur = new Mat();
-        Core.bitwise_not(blurred,invertedBlur);
-        Mat pencil = new Mat();
-        Core.divide(img,invertedBlur,pencil,256); */
+        addProgress(14);
         Mat sketch = new Mat();
         Mat sketch2 = new Mat();
+        addProgress(20);
         Photo.pencilSketch(img,sketch,sketch2,60,0.1F);
+        addProgress(17);
         BufferedImage outBufferedImage = Convert.mat2Img(sketch2);
-
+        addProgress(15);
         active.setImage(outBufferedImage);
+        addProgress(8);
         active.update();
         addToHistory();
     }

@@ -13,9 +13,18 @@ public class EntryChalkSketch
         super(root, "Chalk Sketch");
         this.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Effect effect = new ChalkSketch(root);
-                if (effect.isActiveLayer())
-                    effect.doEffect();
+                DialogBox db = new DialogBox(root.getWindow(), "Effect Chalk Sketch",
+                        DialogBox.MB_APPLY | DialogBox.MB_CANCEL);
+                db.finish();
+                db.doApply(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        db.close();
+                        Effect effect = new ChalkSketch(root);
+                        if (effect.isActiveLayer()) {
+                            effect.doEffect();
+                        }
+                    }
+                });
             }
         });
     }

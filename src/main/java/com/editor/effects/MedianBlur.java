@@ -7,9 +7,15 @@ import java.util.Arrays;
 
 public class MedianBlur
 extends Effect {
+    private Integer size;
 	
     public MedianBlur(EditorRuntime root) {
         super(root);
+    }
+
+    public MedianBlur(EditorRuntime root, Integer size) {
+        super(root);
+        this.size = size;
     }
 	
     static double median(int[] values) {
@@ -26,7 +32,7 @@ extends Effect {
         return median;
     }
 
-    public void doEffect() {
+    public void median() {
         int[] tmp = new int[9];
         int[][] tmp2 = new int[active.getLayerWidth()][active.getLayerHeight()];
         for (int i = 1; i < active.getLayerWidth() - 1; i++) {
@@ -99,9 +105,18 @@ extends Effect {
                 active.setRGB(i, j, tmp2[i][j]);
             }
         }
-		active.update();
-		addToHistory();
+
 	}
+
+    public void process()
+    {
+        for(int i=0; i<this.size; i++)
+        {
+            median();
+        }
+        active.update();
+        addToHistory();
+    }
 	
 	@Override
 	public String toString() {

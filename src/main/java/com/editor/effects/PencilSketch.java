@@ -21,7 +21,7 @@ public class PencilSketch
     }
 
 
-    public void doEffect() {
+    public void process() {
         BufferedImage inBufferedImage = active.getImage();
         Mat img = Convert.img2Mat(inBufferedImage);
         Mat gray = new Mat();

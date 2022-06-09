@@ -19,6 +19,7 @@ extends JPanel {
 		this.bind(slider, spin);
 	}
 	
+	
 	public InteractiveSlider(String name, int min, int max) {
 		super(new FlowLayout(FlowLayout.CENTER, 10, 5));
 		JLabel slidername = new JLabel(name);

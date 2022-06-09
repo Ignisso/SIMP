@@ -6,8 +6,13 @@ import com.editor.image.*;
 public class Damager
         extends Effect {
 
+    private Integer size;
     public Damager(EditorRuntime root) {
         super(root);
+    }
+    public Damager(EditorRuntime root, Integer size) {
+        super(root);
+        this.size = size;
     }
 	
     private int randomRGB(int min, int max)
@@ -16,7 +21,7 @@ public class Damager
         return random;
     }
 	
-    public void doEffect() {
+    public void randomPixels() {
         for (int i = 0; i < active.getLayerWidth(); i++) {
             for (int j = randomRGB(1, 10); j < active.getLayerHeight(); j+=randomRGB(1, 10)) {
                 int rgb = active.getRGB(i, j);
@@ -28,7 +33,17 @@ public class Damager
                 active.setRGB(i, j, rgb);
             }
         }
+    }
+
+    public void process()
+    {
+        for(int i=0; i<this.size; i++)
+        {
+            randomPixels();
+            addProgress(100/this.size);
+        }
         active.update();
+        setProgress(100);
         addToHistory();
     }
 

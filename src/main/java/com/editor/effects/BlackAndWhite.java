@@ -5,14 +5,19 @@ import com.editor.image.*;
 
 public class BlackAndWhite
 extends Effect {
-    private int numberOfShades;
+    private Integer numberOfShades;
 
-    public BlackAndWhite(EditorRuntime root, int numberOfShades) {
+    public BlackAndWhite(EditorRuntime root) {
+        super(root);
+        this.numberOfShades = 5;
+    }
+
+    public BlackAndWhite(EditorRuntime root, Integer numberOfShades) {
         super(root);
         this.numberOfShades = numberOfShades;
     }
 
-    public void doEffect() {
+    public void process() {
         for (int i = 0; i < active.getLayerWidth(); i++) {
             for (int j = 0; j < active.getLayerHeight(); j++) {
                 int rgb = active.getRGB(i, j);
@@ -21,7 +26,7 @@ extends Effect {
                 int g = rgb >> 8 & 0xFF;
                 int b = rgb & 0xFF;
                 int grayscale=  (int) (0.299*r) + (int) (0.587*g) +
-                        (int) (0.114*b) - numberOfShades;
+                        (int) (0.114*b) - this.numberOfShades;
                 r = grayscale;
                 g = grayscale;
                 b = grayscale;
@@ -30,9 +35,11 @@ extends Effect {
                 b = Math.max(Math.min(255, b), 0);
                 rgb = (a << 24) + (r << 16) + (g << 8) + (b);
                 active.setRGB(i, j, rgb);
+                addProgress((active.getLayerWidth() / 20* i)/100);
             }
         }
         active.update();
+        setProgress(100);
 		addToHistory();
     }
 	

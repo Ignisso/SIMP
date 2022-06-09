@@ -13,9 +13,18 @@ public class EntryCrayonSketch
         super(root, "Crayon Sketch");
         this.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Effect effect = new CrayonSketch(root);
-                if (effect.isActiveLayer())
-                    effect.doEffect();
+                DialogBox db = new DialogBox(root.getWindow(), "Effect Crayon Sketch",
+                        DialogBox.MB_APPLY | DialogBox.MB_CANCEL);
+                db.finish();
+                db.doApply(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        db.close();
+                        Effect effect = new CrayonSketch(root);
+                        if (effect.isActiveLayer()) {
+                            effect.doEffect();
+                        }
+                    }
+                });
             }
         });
     }

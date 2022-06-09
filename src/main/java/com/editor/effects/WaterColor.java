@@ -20,12 +20,13 @@ public class WaterColor
     public WaterColor(EditorRuntime root) {
         super(root);
     }
+
     public void doEffect() {
         BufferedImage inBufferedImage = active.getImage();
         Mat img = Convert.img2Mat(inBufferedImage);
         Imgproc.cvtColor(img,img,Imgproc.COLOR_BGRA2BGR);
         Mat output = new Mat();
-        Photo.stylization(img,output,60F,0.1F);
+        Photo.stylization(img,output,60F,0.4F);
         BufferedImage outBufferedImage = Convert.mat2Img(output);
         active.setImage(outBufferedImage);
         active.update();

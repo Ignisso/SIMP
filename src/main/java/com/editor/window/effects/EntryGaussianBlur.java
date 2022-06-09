@@ -4,18 +4,30 @@ import javax.swing.*;
 import java.awt.event.*;
 import com.editor.core.*;
 import com.editor.window.*;
+import com.editor.window.assets.*;
 import com.editor.image.*;
 import com.editor.effects.*;
 
 public class EntryGaussianBlur
-extends Entry {
+		extends Entry {
 	public EntryGaussianBlur(EditorRuntime root) {
 		super(root, "GaussianBlur");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Effect effect = new GaussianBlur(root);
-				if (effect.isActiveLayer())
-					effect.doEffect();
+				DialogBox db = new DialogBox(root.getWindow(), "Effect Gaussian Blur",
+						DialogBox.MB_APPLY | DialogBox.MB_CANCEL);
+				InteractiveSlider is = new InteractiveSlider("Strength:", 1, 10);
+				db.addApplet(is);
+				db.finish();
+				db.doApply(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						db.close();
+						Effect effect = new GaussianBlur(root, is.getValue());
+						if (effect.isActiveLayer()) {
+							effect.doEffect();
+						}
+					}
+				});
 			}
 		});
 	}

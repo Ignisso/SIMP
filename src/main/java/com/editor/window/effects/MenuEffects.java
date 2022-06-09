@@ -18,8 +18,8 @@ extends JMenu {
 		this.add(new EntryCrayonSketch(root));
 		this.add(new EntryDamager(root));
 		this.add(new EntryGaussianBlur(root));
+		this.add(new EntryInversion(root));
 		this.add(new EntryMedianBlur(root));
-		this.add(new EntryNegative(root));
 		this.add(new EntryPencilSketch(root));
 		this.add(new EntrySepia(root));
 		this.add(new EntryTemperature(root));

@@ -13,27 +13,35 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 
 
-public class Negative
+public class Inversion
         extends Effect {
 
-    public Negative(EditorRuntime root) {
+    public Inversion(EditorRuntime root) {
         super(root);
     }
 
 
-    public void doEffect() {
+    public void process() {
         BufferedImage inBufferedImage = active.getImage();
+        addProgress(15);
         Mat img = Convert.img2Mat(inBufferedImage);
+        addProgress(17);
+        Imgproc.cvtColor(img,img,Imgproc.COLOR_BGRA2BGR);
+        addProgress(14);
         Mat negative = new Mat();
+        addProgress(11);
         Core.bitwise_not(img,negative);
+        addProgress(16);
         BufferedImage outBufferedImage = Convert.mat2Img(negative);
+        addProgress(9);
         active.setImage(outBufferedImage);
+        addProgress(18);
         active.update();
         addToHistory();
     }
 
     @Override
     public String toString() {
-        return "Negative";
+        return "Inversion";
     }
 }

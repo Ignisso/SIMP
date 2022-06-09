@@ -22,22 +22,33 @@ public class ChalkSketch
     }
 
 
-    public void doEffect() {
+    public void process() {
         BufferedImage inBufferedImage = active.getImage();
+        addProgress(12);
         Mat img = Convert.img2Mat(inBufferedImage);
+        addProgress(11);
         Imgproc.cvtColor(img,img,Imgproc.COLOR_BGRA2BGR);
+        addProgress(7);
         Mat invertedImg= new Mat();
+        addProgress(15);
         Core.bitwise_not(img,invertedImg);
+        addProgress(12);
         Mat blurred = new Mat();
+        addProgress(17);
         Imgproc.GaussianBlur(invertedImg, blurred, new Size(21,21), 0,0);
+        addProgress(9);
         Mat invertedBlur = new Mat();
+        addProgress(4);
         Core.bitwise_not(blurred,invertedBlur);
+        addProgress(5);
         Mat pencil = new Mat();
         Core.divide(img,invertedBlur,pencil,256);
+        addProgress(6);
         BufferedImage outBufferedImage = Convert.mat2Img(pencil);
 
         active.setImage(outBufferedImage);
         active.update();
+        setProgress(100);
         addToHistory();
     }
 

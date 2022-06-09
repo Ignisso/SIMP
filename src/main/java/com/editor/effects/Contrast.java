@@ -5,14 +5,19 @@ import com.editor.image.*;
 
 public class Contrast
 extends Effect {
-    private int contrast;
+    private Integer contrast;
 	
-    public Contrast(EditorRuntime root, int contrast) {
+    public Contrast(EditorRuntime root) {
+        super(root);
+        this.contrast = 5;
+    }
+
+    public Contrast(EditorRuntime root, Integer contrast) {
         super(root);
         this.contrast = contrast;
     }
 	
-    public void doEffect() {
+    public void process() {
         for (int i = 0; i < active.getLayerWidth(); i++) {
             for (int j = 0; j < active.getLayerHeight(); j++) {
                 int rgb = active.getRGB(i, j);
@@ -20,7 +25,7 @@ extends Effect {
                 int r = rgb >> 16 & 0xFF;
                 int g = rgb >> 8 & 0xFF;
                 int b = rgb & 0xFF;
-                float factor = (259 * ((float)contrast + 255)) / (255 * (259 - (float)contrast));
+                float factor = (259 * ((float)this.contrast + 255)) / (255 * (259 - (float)this.contrast));
                 r = (int) (factor*(r-128) + 128);
                 g = (int) (factor*(g-128) + 128);
                 b = (int) (factor*(b-128) + 128);
@@ -30,9 +35,11 @@ extends Effect {
 
                 rgb = (a << 24) + (r << 16) + (g << 8) + (b);
                 active.setRGB(i, j, rgb);
+                addProgress((active.getLayerWidth() / 20* i)/100);
             }
         }
         active.update();
+        setProgress(100);
 		addToHistory();
     }
 	
