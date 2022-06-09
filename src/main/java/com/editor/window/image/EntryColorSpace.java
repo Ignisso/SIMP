@@ -14,10 +14,11 @@ extends Entry {
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				root.getWindow().getWorkspace().getImage().setChannels(
-					BufferedImage.TYPE_3BYTE_BGR);
+					root.getWindow().getWorkspace().getImage().setChannels(
+						BufferedImage.TYPE_3BYTE_BGR);
 				} catch (Exception ex) {
-					System.out.println("Failed");
+					JOptionPane.showMessageDialog(root.getWindow(), ex.getMessage(),
+						"Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

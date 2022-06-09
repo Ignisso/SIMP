@@ -65,9 +65,12 @@ extends JComponent implements Cloneable {
 		return this.layers;
 	}
 	
-	private BufferedImage mergeLayers() {
+	private BufferedImage mergeLayers(boolean flatten) {
 		BufferedImage result;
-		result = new BufferedImage(this.width, this.height, this.imageFormat);
+		if (flatten)
+			result = new BufferedImage(this.width, this.height, BufferedImage.TYPE_3BYTE_BGR);
+		else
+			result = new BufferedImage(this.width, this.height, this.imageFormat);
 		Graphics g = result.getGraphics();
 		for (Layer l : this.layers) {
 			g.translate(l.getXpos(), l.getYpos());
@@ -124,6 +127,11 @@ extends JComponent implements Cloneable {
 	}
 	
 	public void setDimension(Integer width, Integer height) {
+		if (width > 8000 || height > 8000) {
+			JOptionPane.showMessageDialog(this.window, "Cannot create images larger than 8K.",
+				"Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		this.width  = width;
 		this.height = height;
 		this.setSize((int)(width * this.getScale()), (int)(height * this.getScale()));
@@ -196,11 +204,39 @@ extends JComponent implements Cloneable {
 		return this.layers.get(this.activeLayer);
 	}
 	
-	public void exportToFile(File file, String format) {
+	public void exportToFile(File file) {
+		String name = file.getName();
+		String format;
+		if (name.toLowerCase().endsWith(".bmp"))
+			format = "bmp";
+		else if (name.toLowerCase().endsWith(".jpg") || name.toLowerCase().endsWith(".jpeg"))
+			format = "jpg";
+		else if (name.toLowerCase().endsWith(".png"))
+			format = "png";
+		else if (name.toLowerCase().endsWith(".tif") || name.toLowerCase().endsWith(".tiff"))
+			format = "tif";
+		else {
+			JOptionPane.showMessageDialog(this.window, "Not supported file extension.",
+			"Warning", JOptionPane.WARNING_MESSAGE);
+			return;
+		}
 		try {
-			ImageIO.write(this.mergeLayers(), format, file);
+			BufferedImage output;
+			if (this.imageFormat == BufferedImage.TYPE_4BYTE_ABGR &&
+				(format.equals("bmp") || format.equals("jpg") || format.equals("tif"))) {
+				int choose = JOptionPane.showConfirmDialog(this.window, "Possibly a lossy" +
+				" conversion. Convert?", "Coversion", JOptionPane.OK_CANCEL_OPTION);
+					if (choose == JOptionPane.OK_OPTION)
+						output = mergeLayers(true);
+					else
+						return;
+			}
+			else
+				output = mergeLayers(false);
+			ImageIO.write(output, format, file);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			JOptionPane.showMessageDialog(this.window, e.getMessage(),
+				"Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -223,6 +259,22 @@ extends JComponent implements Cloneable {
 		layer.update();
 	}
 	
+	public void addLayer(File file) {
+		BufferedImage image;
+		try {
+			image = ImageIO.read(file);
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this.window, e.getMessage(),
+				"Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		Layer layer = new Layer(this.window, image, this.layers.size(), this);
+		this.layers.add(layer);
+		this.add(layer);
+		this.activeLayer = this.layers.size() - 1;
+		layer.update();
+	}
+	
 	public void update() {
 		this.setLocation(this.X, this.Y);
 		for (Layer l : this.layers)
@@ -232,11 +284,9 @@ extends JComponent implements Cloneable {
 	public void zoomOut(Integer x, Integer y) {
 		if (this.scale > 0.01f) {
 			this.scale -= (this.scale * 0.15f);
-			this.X -= x - this.window.getWorkspace().getWidth();
-			this.Y -= y - this.window.getWorkspace().getHeight();
-			Integer dispSizeX = (int)(this.width * this.getScale());
-			Integer dispSizeY = (int)(this.height * this.getScale());
-			this.setBounds(this.X, this.Y, dispSizeX, dispSizeY);
+			this.X += (int)((x - this.getWidth() / 2) * 0.15f);
+			this.Y += (int)((y - this.getHeight() / 2) * 0.15f);
+			this.setSize((int)(this.width * this.scale), (int)(this.height * this.scale));
 			this.update();
 		}
 	}
@@ -244,11 +294,9 @@ extends JComponent implements Cloneable {
 	public void zoomIn(Integer x, Integer y) {
 		if (this.scale < 100.f) {
 			this.scale += (this.scale * 0.15f);
-			this.X += x - this.window.getWorkspace().getWidth();
-			this.Y += y - this.window.getWorkspace().getHeight();
-			Integer dispSizeX = (int)(this.width * this.getScale());
-			Integer dispSizeY = (int)(this.height * this.getScale());
-			this.setBounds(this.X, this.Y, dispSizeX, dispSizeY);
+			this.X += (int)((this.getWidth() / 2 - x) * 0.15f);
+			this.Y += (int)((this.getHeight() / 2 - y) * 0.15f);
+			this.setSize((int)(this.width * this.scale), (int)(this.height * this.scale));
 			this.update();
 		}
 	}

@@ -10,6 +10,7 @@ extends JMenu {
 		super("File");
 		this.add(new EntryNew(root));
 		this.add(new EntryOpen(root));
+		this.add(new EntryOpenLayer(root));
 		this.addSeparator();
 		this.add(new EntrySave(root));
 		this.add(new EntrySaveAs(root));

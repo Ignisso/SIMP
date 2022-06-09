@@ -18,10 +18,12 @@ extends Entry {
 				if (img == null)
 					return;
 				JFileChooser export = new JFileChooser();
-				export.showOpenDialog(null);
+				export.setDialogType(JFileChooser.SAVE_DIALOG);
+				FileFilter.addFilters(export);
+				export.showSaveDialog(null);
 				File output = export.getSelectedFile();
 				if (output != null)
-					img.exportToFile(output, "png");
+					img.exportToFile(output);
 			}
 		});
 	}
