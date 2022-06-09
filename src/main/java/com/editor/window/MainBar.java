@@ -8,6 +8,8 @@ import com.editor.window.tools.*;
 import com.editor.window.effects.*;
 import com.editor.window.image.*;
 import com.editor.window.themes.*;
+import com.editor.window.windows.*;
+import com.editor.window.help.*;
 
 public class MainBar
 extends JMenuBar {
@@ -19,6 +21,7 @@ extends JMenuBar {
 		add(new MenuEffects(root));
 		add(new MenuImage(root));
 		add(new MenuTheme(root));
-		//add(new MenuHelp(root));
+		add(new MenuWindows(root));
+		add(new MenuHelp(root));
 	}
 }

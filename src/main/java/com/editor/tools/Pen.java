@@ -18,6 +18,7 @@ extends Tool {
 	
 	public void mousePressed(MouseEvent e) {
 		this.make = true;
+		createHistoryEntry();
 		Image img = root.getWindow().getWorkspace().getImage();
 		if (img == null)
 			return;
@@ -104,5 +105,11 @@ extends Tool {
 	
 	public void mouseReleased(MouseEvent e) {
 		this.make = false;
+		addToHistory();
+	}
+	
+	@Override
+	public String toString() {
+		return "Pen";
 	}
 }

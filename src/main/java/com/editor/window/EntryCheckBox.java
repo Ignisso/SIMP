@@ -8,6 +8,11 @@ public class EntryCheckBox
 extends JCheckBoxMenuItem {
 	protected EditorRuntime root;
 	
+	public EntryCheckBox(EditorRuntime root, String name) {
+		super(name, false);
+		this.root = root;
+	}
+	
 	public EntryCheckBox(EditorRuntime root, String name, boolean checked) {
 		super(name, checked);
 		this.root = root;

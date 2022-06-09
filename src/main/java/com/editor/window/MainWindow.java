@@ -12,6 +12,9 @@ extends Window {
 	
 	public MainWindow(EditorRuntime root) {
 		super(root, "SIMP - Simple Image Modifying Program", 1200, 900);
+		ImageIcon icon = new ImageIcon("../resources.icon.png");
+		//if (icon != null)
+			//this.setIconImage(icon.getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationByPlatform(true);
 		this.workspace = new Workspace(this, root);
