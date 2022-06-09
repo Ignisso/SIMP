@@ -14,6 +14,7 @@ extends Effect {
 	
     public void process() {
         for (int i = 0; i < active.getLayerWidth(); i++) {
+            setProgress(100 * (i+1)/active.getLayerWidth());
             for (int j = 0; j < active.getLayerHeight(); j++) {
                 int rgb = active.getRGB(i, j);
                 int a = rgb >> 24 & 0xFF;

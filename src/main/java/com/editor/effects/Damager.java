@@ -18,6 +18,7 @@ public class Damager
 	
     public void process() {
         for (int i = 0; i < active.getLayerWidth(); i++) {
+            setProgress(100 * (i+1)/active.getLayerWidth());
             for (int j = randomRGB(1, 10); j < active.getLayerHeight(); j+=randomRGB(1, 10)) {
                 int rgb = active.getRGB(i, j);
                 int a = rgb >> 24 & 0xFF;
