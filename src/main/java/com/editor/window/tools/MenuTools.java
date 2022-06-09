@@ -21,5 +21,8 @@ extends JMenu {
 		EntryRadio e4 = new EntryPipette(root);
 		this.add(e4);
 		group.add(e4);
+		EntryRadio e5 = new EntryPen(root);
+		this.add(e5);
+		group.add(e5);
 	}
 }

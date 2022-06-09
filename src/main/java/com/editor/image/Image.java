@@ -15,15 +15,15 @@ import java.io.File;
 
 public class Image
 extends JComponent implements Cloneable {
-	private MainWindow       window;
-	private Integer          activeLayer;
+	private MainWindow	   window;
+	private Integer		  activeLayer;
 	private ArrayList<Layer> layers;
-	private double           scale;
-	private Integer          X;
-	private Integer          Y;
-	private Integer          width;
-	private Integer          height;
-	private int              imageFormat;
+	private double		   scale;
+	private Integer		  X;
+	private Integer		  Y;
+	private Integer		  width;
+	private Integer		  height;
+	private int			  imageFormat;
 	
 	private void fillAlpha(Graphics g, int size) {
 		int pixels = size;
@@ -83,47 +83,47 @@ extends JComponent implements Cloneable {
 	
 	public Image(MainWindow window) {
 		super();
-		this.window      = window;
+		this.window	  = window;
 		this.activeLayer = null;
-		this.layers      = new ArrayList<Layer>();
-		this.scale       = 1.f;
-		this.X           = 0;
-		this.Y           = 0;
-		this.width       = 0;
-		this.height      = 0;
+		this.layers	  = new ArrayList<Layer>();
+		this.scale	   = 1.f;
+		this.X		   = 0;
+		this.Y		   = 0;
+		this.width	   = 0;
+		this.height	  = 0;
 	}
 	
 	private Image(MainWindow window, Integer activeLayer, ArrayList<Layer> layers,
 		double scale, Integer X, Integer Y, Integer w, Integer h, Rectangle bounds,
 		int channels) {
-        super();
-        this.window      = window;
-        this.activeLayer = activeLayer;
-        this.layers      = new ArrayList<Layer>();
-        for(Layer l : layers) {
+		super();
+		this.window	  = window;
+		this.activeLayer = activeLayer;
+		this.layers	  = new ArrayList<Layer>();
+		for(Layer l : layers) {
 			Layer cloned = l.clone();
 			cloned.setParent(this);
-            this.layers.add(cloned);
+			this.layers.add(cloned);
 			this.add(cloned);
-        }
-        this.scale       = scale;
-        this.X           = X;
-        this.Y           = Y;
-		this.width       = w;
-		this.height      = h;
+		}
+		this.scale	   = scale;
+		this.X		   = X;
+		this.Y		   = Y;
+		this.width	   = w;
+		this.height	  = h;
 		this.imageFormat = channels;
 		this.setBounds(bounds);
-    }
+	}
 	
-    public Image clone() {
-        return new Image(this.window, this.activeLayer, this.layers, this.scale,
+	public Image clone() {
+		return new Image(this.window, this.activeLayer, this.layers, this.scale,
 			this.X, this.Y, this.width, this.height, this.getBounds(), this.imageFormat);
-    }
+	}
 	
 	public void setSettings(Image img) {
 		this.scale = img.scale;
-		this.X     = img.X;
-		this.Y     = img.Y;
+		this.X	 = img.X;
+		this.Y	 = img.Y;
 	}
 	
 	public void setDimension(Integer width, Integer height) {
@@ -242,8 +242,8 @@ extends JComponent implements Cloneable {
 	
 	public void addLayer(BufferedImage image) {
 		if (this.layers.size() == 0) {
-			this.X      = this.window.getWidth() / 2;
-			this.Y      = this.window.getHeight() / 2;
+			this.X	  = this.window.getWidth() / 2;
+			this.Y	  = this.window.getHeight() / 2;
 			this.width  = image.getWidth();
 			this.height = image.getHeight();
 			setSize(this.width, this.height);
