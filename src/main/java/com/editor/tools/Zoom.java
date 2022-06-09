@@ -12,12 +12,18 @@ extends Tool {
 	}
 	
 	public void mousePressed(MouseEvent e) {
-		Point p = root.getWindow().getWorkspace().getImage().getMousePosition(true);
+		Workspace workspace = root.getWindow().getWorkspace();
+		Image image = workspace.getImage();
+		if (image == null)
+			return;
+		Point p = workspace.getMousePosition(true);
+		if (p == null)
+			return;
 		int x = (int)p.getX();
 		int y = (int)p.getY();
 		if (e.getButton() == MouseEvent.BUTTON1)
-			root.getWindow().getWorkspace().getImage().zoomIn(x, y);
+			image.zoomIn(x, y);
 		else if (e.getButton() == MouseEvent.BUTTON3)
-			root.getWindow().getWorkspace().getImage().zoomOut(x, y);
+			image.zoomOut(x, y);
 	}
 }

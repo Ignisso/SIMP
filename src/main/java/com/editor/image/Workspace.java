@@ -3,12 +3,14 @@ package com.editor.image;
 import com.editor.window.*;
 import com.editor.core.*;
 import com.editor.history.*;
+import java.awt.*;
 import javax.swing.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
-public class Workspace {
+public class Workspace
+extends JComponent {
 	private Image         image;
 	private MainWindow    window;
 	private EditorRuntime root;
@@ -16,8 +18,8 @@ public class Workspace {
 	public Workspace(MainWindow window, EditorRuntime root) {
 		this.root   = root;
 		this.window = window;
-		this.image  = new Image(window);
-		this.window.add(this.image);
+		this.window.add(this);
+		this.image  = null;
 		this.update();
 	}
 	
@@ -41,19 +43,21 @@ public class Workspace {
 			System.err.println(e.getMessage());
 		}
 		
-		this.window.remove(this.image);
+		if (this.image != null)
+			this.remove(this.image);
 		this.image = new Image(this.window);
 		this.image.addLayer(bi);
 		Command command = new EditImageCommand(this, "base");
 		this.root.getHistory().insert(command);
-		this.window.add(this.image);
+		this.add(this.image);
 		this.update();
 	}
 	
 	public void setImage(Image img) {
-		this.window.remove(this.image);
+		if (this.image != null)
+			this.remove(this.image);
 		this.image = img;
-		this.window.add(this.image);
+		this.add(this.image);
 		this.update();
 	}
 	
@@ -66,7 +70,8 @@ public class Workspace {
 	}
 	
 	public void update() {
-		this.image.update();
+		if (this.image != null)
+			this.image.update();
 		this.window.validate();
 		this.window.repaint();
 	}

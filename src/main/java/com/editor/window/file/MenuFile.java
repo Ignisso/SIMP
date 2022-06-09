@@ -14,6 +14,9 @@ extends JMenu {
 		this.add(new EntrySave(root));
 		this.add(new EntrySaveAs(root));
 		this.addSeparator();
+		this.add(new EntryExport(root));
+		this.add(new EntryExportAs(root));
+		this.addSeparator();
 		this.add(new EntryExit(root));
 	}
 }

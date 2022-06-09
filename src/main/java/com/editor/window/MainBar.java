@@ -6,6 +6,7 @@ import com.editor.window.file.*;
 import com.editor.window.edit.*;
 import com.editor.window.tools.*;
 import com.editor.window.effects.*;
+import com.editor.window.image.*;
 import com.editor.window.themes.*;
 
 public class MainBar
@@ -16,6 +17,7 @@ extends JMenuBar {
 		add(new MenuEdit(root));
 		add(new MenuTools(root));
 		add(new MenuEffects(root));
+		add(new MenuImage(root));
 		add(new MenuTheme(root));
 		//add(new MenuHelp(root));
 	}

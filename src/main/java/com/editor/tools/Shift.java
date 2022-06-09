@@ -15,18 +15,21 @@ extends Tool {
 	
 	public void mousePressed(MouseEvent e) {
 		this.make = true;
-		Image image = root.getWindow().getWorkspace().getImage();
+		Workspace workspace = root.getWindow().getWorkspace();
+		Image image = workspace.getImage();
 		if (image == null)
 			return;
 		
 		Thread t = new Thread() {
 			public void run() {
-				Point beg = image.getMousePosition(true);
+				Point beg = workspace.getMousePosition(true);
+				if (beg == null)
+					return;
 				Integer lxp = image.getXpos();
 				Integer lyp = image.getYpos();
 				Point end = null;
 				while (make) {
-					end = image.getMousePosition(true);
+					end = workspace.getMousePosition(true);
 					try {
 						Thread.sleep(20);
 					} catch (Exception e) {

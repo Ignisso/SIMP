@@ -15,10 +15,11 @@ extends Tool {
 	
 	public void mousePressed(MouseEvent e) {
 		this.make = true;
-		Image img = root.getWindow().getWorkspace().getImage();
-		if (img == null)
+		Workspace workspace = root.getWindow().getWorkspace();
+		Image image = workspace.getImage();
+		if (image == null)
 			return;
-		Layer layer = img.getActiveLayer();
+		Layer layer = image.getActiveLayer();
 		if (layer == null)
 			return;
 		if (!layer.isVisible())
@@ -26,20 +27,22 @@ extends Tool {
 		
 		Thread t = new Thread() {
 			public void run() {
-				Point beg = img.getMousePosition(true);
+				Point beg = workspace.getMousePosition(true);
+				if (beg == null)
+					return;
 				Integer lxp = layer.getXpos();
 				Integer lyp = layer.getYpos();
 				Point end = null;
 				while (make) {
-					end = img.getMousePosition(true);
+					end = workspace.getMousePosition(true);
 					try {
 						Thread.sleep(20);
 					} catch (Exception e) {
 						System.err.println(e.getMessage());
 					}
 					if (end != null)
-						layer.setPosition((int)((end.getX() - beg.getX()) / img.getScale() + lxp),
-							(int)((end.getY() - beg.getY()) / img.getScale() + lyp));
+						layer.setPosition((int)(end.getX() - beg.getX() + lxp),
+							(int)(end.getY() - beg.getY() + lyp));
 				}
 			}
 		};
