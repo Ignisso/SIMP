@@ -14,4 +14,3 @@ echo Editor.jar has been generated in ./build
 del sources.list
 cd ../../../
 echo Process finished...
-pause > nul

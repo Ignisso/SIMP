@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import com.editor.core.*;
 import com.editor.window.*;
+import com.editor.window.assets.*;
 import com.formdev.flatlaf.icons.*;
 import java.awt.image.BufferedImage;
 
@@ -13,13 +14,32 @@ extends Entry {
 		super(root, "Set color space");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					root.getWindow().getWorkspace().getImage().setChannels(
-						BufferedImage.TYPE_3BYTE_BGR);
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(root.getWindow(), ex.getMessage(),
-						"Error", JOptionPane.ERROR_MESSAGE);
-				}
+				DialogBox db = new DialogBox(root.getWindow(), "Set dimension",
+					DialogBox.MB_APPLY | DialogBox.MB_CANCEL);
+				String[] labels = {"Mono Channel", "RGB", "RGBA"};
+				InteractiveRadio ir = new InteractiveRadio(labels);
+				db.addApplet(ir);
+				db.finish();
+				db.doApply(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						db.close();
+						try {
+							switch(ir.getValue()) {
+								case 0:
+									root.getWindow().getWorkspace().getImage().setChannels(BufferedImage.TYPE_BYTE_GRAY);
+								case 1:
+									root.getWindow().getWorkspace().getImage().setChannels(BufferedImage.TYPE_3BYTE_BGR);
+								case 2:
+									root.getWindow().getWorkspace().getImage().setChannels(BufferedImage.TYPE_4BYTE_ABGR);
+								default:
+									root.getWindow().getWorkspace().getImage().setChannels(BufferedImage.TYPE_4BYTE_ABGR);
+							}
+						} catch (Exception ex) {
+							JOptionPane.showMessageDialog(root.getWindow(), ex.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				});
+				
 			}
 		});
 	}
