@@ -9,18 +9,22 @@ public class MenuEffects
 extends JMenu {
 	public MenuEffects(EditorRuntime root) {
 		super("Effects");
+		this.add(new EntryAverageBlur(root));
 		this.add(new EntryBlackAndWhite(root));
 		this.add(new EntryBlackout(root));
 		this.add(new EntryBrightness(root));
 		this.add(new EntryCartoon(root));
 		this.add(new EntryChalkSketch(root));
+		this.add(new EntryColorGaussianBlur(root));
 		this.add(new EntryContrast(root));
 		this.add(new EntryCrayonSketch(root));
 		this.add(new EntryDamager(root));
 		this.add(new EntryGaussianBlur(root));
 		this.add(new EntryHDR(root));
+		this.add(new EntryHSV(root));
 		this.add(new EntryInversion(root));
 		this.add(new EntryMedianBlur(root));
+		this.add(new EntryMosaic(root));
 		this.add(new EntryPencilSketch(root));
 		this.add(new EntryPixelate(root));
 		this.add(new EntryRGB(root));

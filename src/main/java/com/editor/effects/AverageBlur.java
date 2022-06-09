@@ -15,14 +15,14 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 
 
-public class GaussianBlur
+public class AverageBlur
         extends Effect {
 
     private Integer size;
-    public GaussianBlur(EditorRuntime root) {
+    public AverageBlur(EditorRuntime root) {
         super(root);
     }
-    public GaussianBlur(EditorRuntime root, Integer size) {
+    public AverageBlur(EditorRuntime root, Integer size) {
         super(root);
         this.size = size;
     }
@@ -41,7 +41,7 @@ public class GaussianBlur
         addProgress(15);
         Size size = new Size(this.size,this.size);
         addProgress(20);
-        Imgproc.GaussianBlur(img,out, size, 0);
+        Imgproc.blur(img,out, size, point, Core.BORDER_DEFAULT);
         addProgress(7);
         BufferedImage outBufferedImage = Convert.mat2Img(out);
         addProgress(8);
