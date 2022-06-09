@@ -6,20 +6,23 @@ import com.editor.core.*;
 import com.editor.window.*;
 import com.editor.image.*;
 import com.editor.effects.*;
+import com.editor.window.assets.InteractiveSlider;
 
-public class EntrySepia
+public class EntryPixelate
         extends Entry {
-    public EntrySepia(EditorRuntime root) {
-        super(root, "Sepia");
+    public EntryPixelate(EditorRuntime root) {
+        super(root, "Pixelate");
         this.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                DialogBox db = new DialogBox(root.getWindow(), "Effect Sepia",
+                DialogBox db = new DialogBox(root.getWindow(), "Effect Pixelate",
                         DialogBox.MB_APPLY | DialogBox.MB_CANCEL);
+                InteractiveSlider pixels = new InteractiveSlider("Number of Pixels", 1, 200);
+                db.addApplet(pixels);
                 db.finish();
                 db.doApply(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         db.close();
-                        Effect effect = new Sepia(root);
+                        Effect effect = new Pixelate(root, pixels.getValue());
                         if (effect.isActiveLayer()) {
                             effect.doEffect();
                         }

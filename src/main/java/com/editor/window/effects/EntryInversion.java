@@ -10,7 +10,7 @@ import com.editor.effects.*;
 public class EntryInversion
         extends Entry {
     public EntryInversion(EditorRuntime root) {
-        super(root, "Crayon Sketch");
+        super(root, "Inversion");
         this.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 DialogBox db = new DialogBox(root.getWindow(), "Effect Inversion",

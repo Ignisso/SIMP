@@ -7,19 +7,19 @@ import com.editor.window.*;
 import com.editor.image.*;
 import com.editor.effects.*;
 
-public class EntrySepia
+public class EntryHDR
         extends Entry {
-    public EntrySepia(EditorRuntime root) {
-        super(root, "Sepia");
+    public EntryHDR(EditorRuntime root) {
+        super(root, "HDR");
         this.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                DialogBox db = new DialogBox(root.getWindow(), "Effect Sepia",
+                DialogBox db = new DialogBox(root.getWindow(), "Effect HDR",
                         DialogBox.MB_APPLY | DialogBox.MB_CANCEL);
                 db.finish();
                 db.doApply(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         db.close();
-                        Effect effect = new Sepia(root);
+                        Effect effect = new HDR(root);
                         if (effect.isActiveLayer()) {
                             effect.doEffect();
                         }

@@ -6,20 +6,23 @@ import com.editor.core.*;
 import com.editor.window.*;
 import com.editor.image.*;
 import com.editor.effects.*;
+import com.editor.window.assets.InteractiveSlider;
 
-public class EntrySepia
+public class EntrySharpness
         extends Entry {
-    public EntrySepia(EditorRuntime root) {
-        super(root, "Sepia");
+    public EntrySharpness(EditorRuntime root) {
+        super(root, "Sharpness");
         this.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                DialogBox db = new DialogBox(root.getWindow(), "Effect Sepia",
+                DialogBox db = new DialogBox(root.getWindow(), "Effect Sharpness",
                         DialogBox.MB_APPLY | DialogBox.MB_CANCEL);
+                InteractiveSlider is = new InteractiveSlider("Strength:", 1, 15);
+                db.addApplet(is);
                 db.finish();
                 db.doApply(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         db.close();
-                        Effect effect = new Sepia(root);
+                        Effect effect = new Sharpness(root, is.getValue());
                         if (effect.isActiveLayer()) {
                             effect.doEffect();
                         }

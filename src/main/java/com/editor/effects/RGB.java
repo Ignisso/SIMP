@@ -3,11 +3,21 @@ package com.editor.effects;
 import com.editor.core.*;
 import com.editor.image.*;
 
-public class Sepia
+public class RGB
         extends Effect {
+    private Integer red;
+    private Integer green;
+    private Integer blue;
 
-    public Sepia(EditorRuntime root) {
+    public RGB(EditorRuntime root) {
         super(root);
+    }
+
+    public RGB(EditorRuntime root, Integer red, Integer green, Integer blue) {
+        super(root);
+        this.red = red;
+        this.blue = blue;
+        this.green = green;
     }
 
     public void process() {
@@ -18,26 +28,22 @@ public class Sepia
                 int r = rgb >> 16 & 0xFF;
                 int g = rgb >> 8 & 0xFF;
                 int b = rgb & 0xFF;
-                int grayscale=  (int) (0.299*r) + (int) (0.587*g) + (int) (0.114*b);
-                int depth = 20;
-                int intensity = 30;
-                r = grayscale +depth*2;
-                g = grayscale+depth;
-                b =  grayscale-intensity;
+                r += this.red; g += this.green; b += this.blue;
                 r = Math.max(Math.min(255, r), 0);
                 g = Math.max(Math.min(255, g), 0);
                 b = Math.max(Math.min(255, b), 0);
-
                 rgb = (a << 24) + (r << 16) + (g << 8) + (b);
                 active.setRGB(i, j, rgb);
             }
+            //addProgress(active.getLayerWidth() / i*20);
         }
+        setProgress(100);
         active.update();
         addToHistory();
     }
 
     @Override
     public String toString() {
-        return "Sepia";
+        return "RGB";
     }
 }
