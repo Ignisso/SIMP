@@ -14,7 +14,7 @@ public class EntryMedianBlur extends Entry {
             public void actionPerformed(ActionEvent e) {
                 Effect effect = new MedianBlur(root);
 				if (effect.isActiveLayer())
-					effect.process();
+					effect.doEffect();
 			}
         });
     }

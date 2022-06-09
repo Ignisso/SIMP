@@ -24,7 +24,7 @@ extends Entry {
                         db.close();
                         Effect effect = new Contrast(root, is.getValue());
                         if (effect.isActiveLayer())
-                            effect.process();
+                            effect.doEffect();
                     }
                 });
             }

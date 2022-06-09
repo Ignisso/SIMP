@@ -24,7 +24,7 @@ extends Entry {
 						db.close();
 						Effect effect = new Temperature(root, is.getValue());
 						if (effect.isActiveLayer())
-							effect.process();
+							effect.doEffect();
 					}
 				});
 			}

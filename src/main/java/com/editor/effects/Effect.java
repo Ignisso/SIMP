@@ -38,8 +38,12 @@ public abstract class Effect {
 		});
 	}
 	
-	public void process() {
+	public void doEffect() {
 		thread.execute();
+	}
+	
+	public void process() {
+		
 	}
 	
 	public void closeDialog() {
