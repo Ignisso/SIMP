@@ -17,25 +17,30 @@ public abstract class Effect {
 	
 	public Effect(EditorRuntime root) {
 		this.root = root;
-		this.command = new EditImageCommand(root.getWindow().getWorkspace(),
-			this.toString());
-		this.command.restore();
-		this.active = root.getWindow().getWorkspace().getImage().getActiveLayer();
-		this.db = new DialogBox(root.getWindow(), this.toString() + " progress...",
-			DialogBox.MB_CANCEL);
-		this.progress = new JProgressBar(0);
-		this.progress.setMaximum(100);
-		progress.setMinimum(0);
-		progress.setStringPainted(true);
-		progress.setVisible(true);
-		db.addApplet(this.progress);
-		db.finish();
-		this.thread = new EffectsWorker(this);
-		db.doCancel(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				thread.cancel(true);
-			}
-		});
+		Image image = root.getWindow().getWorkspace().getImage();
+		if (image == null)
+			this.active = null;
+		else {
+			this.command = new EditImageCommand(root.getWindow().getWorkspace(),
+				this.toString());
+			this.command.restore();
+			this.active = image.getActiveLayer();
+			this.db = new DialogBox(root.getWindow(), this.toString() + " progress...",
+				DialogBox.MB_CANCEL);
+			this.progress = new JProgressBar(0);
+			this.progress.setMaximum(100);
+			progress.setMinimum(0);
+			progress.setStringPainted(true);
+			progress.setVisible(true);
+			db.addApplet(this.progress);
+			db.finish();
+			this.thread = new EffectsWorker(this);
+			db.doCancel(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					thread.cancel(true);
+				}
+			});
+		}
 	}
 	
 	public void doEffect() {
@@ -51,6 +56,8 @@ public abstract class Effect {
 	}
 	
 	protected void setProgress(Integer progress) {
+		if (this.active == null)
+			return;
 		this.progress.setValue(progress);
 		System.out.println(this.progress.getValue());
 		if (this.thread.isCancelled())
@@ -58,6 +65,8 @@ public abstract class Effect {
 	}
 	
 	protected void addProgress(Integer progress) {
+		if (this.active == null)
+			return;
 		this.progress.setValue(this.progress.getValue() + progress);
 		System.out.println(this.progress.getValue());
 		if (this.thread.isCancelled())

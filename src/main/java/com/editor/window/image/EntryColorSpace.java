@@ -18,9 +18,9 @@ extends Entry {
 				Image image = root.getWindow().getWorkspace().getImage();
 				if (image == null)
 					return;
-				DialogBox db = new DialogBox(root.getWindow(), "Set dimension",
+				DialogBox db = new DialogBox(root.getWindow(), "Set color space",
 					DialogBox.MB_APPLY | DialogBox.MB_CANCEL);
-				String[] labels = {"Mono Channel", "RGB", "RGBA"};
+				String[] labels = {"MONO", "RGB", "RGBA"};
 				InteractiveRadio ir = new InteractiveRadio(labels);
 				switch (image.getChannels()) {
 					case BufferedImage.TYPE_BYTE_GRAY:
@@ -39,7 +39,6 @@ extends Entry {
 					public void actionPerformed(ActionEvent e) {
 						db.close();
 						try {
-							System.out.println(ir.getValue());
 							switch (ir.getValue()) {
 								case 0:
 									image.setChannels(BufferedImage.TYPE_BYTE_GRAY);
