@@ -110,7 +110,7 @@ extends JLayeredPane implements Cloneable {
 		this.X		   = X;
 		this.Y		   = Y;
 		this.width	   = w;
-		this.height	  = h;
+		this.height	   = h;
 		this.imageFormat = channels;
 		this.setBounds(bounds);
 	}
