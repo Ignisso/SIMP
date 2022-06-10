@@ -21,7 +21,7 @@ extends JMenu {
 		this.add(new EntryDamager(root));
 		this.add(new EntryGaussianBlur(root));
 		this.add(new EntryHDR(root));
-		this.add(new EntryHSV(root));
+		//this.add(new EntryHSV(root));
 		this.add(new EntryInversion(root));
 		this.add(new EntryMedianBlur(root));
 		this.add(new EntryMosaic(root));
@@ -32,7 +32,7 @@ extends JMenu {
 		this.add(new EntrySharpness(root));
 		this.add(new EntryTemperature(root));
 		this.add(new EntryTint(root));
-		this.add(new EntryVignette(root));
+		//this.add(new EntryVignette(root));
 		this.add(new EntryWaterColor(root));
 
 	}

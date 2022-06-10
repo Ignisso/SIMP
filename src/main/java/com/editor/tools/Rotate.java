@@ -24,6 +24,8 @@ extends Tool {
 		Image image = root.getWindow().getWorkspace().getImage();
 		if (image == null)
 			return;
+		createHistoryEntry();
+		image = root.getWindow().getWorkspace().getImage();
 		Layer active = image.getActiveLayer();
 		if (active == null)
 			return;
@@ -35,6 +37,7 @@ extends Tool {
 		image.setDimension(image.getAbsoluteHeight(), image.getAbsoluteWidth());
 		active.setImage(outBufferedImage);
 		active.update();
+		addToHistory();
 	}
 
 	public void rotation180()
@@ -42,6 +45,8 @@ extends Tool {
 		Image image = root.getWindow().getWorkspace().getImage();
 		if (image == null)
 			return;
+		createHistoryEntry();
+		image = root.getWindow().getWorkspace().getImage();
 		Layer active = image.getActiveLayer();
 		if (active == null)
 			return;
@@ -53,6 +58,7 @@ extends Tool {
 		image.setDimension(image.getAbsoluteHeight(), image.getAbsoluteWidth());
 		active.setImage(outBufferedImage);
 		active.update();
+		addToHistory();
 	}
 
 	public void rotation270()
@@ -60,6 +66,8 @@ extends Tool {
 		Image image = root.getWindow().getWorkspace().getImage();
 		if (image == null)
 			return;
+		createHistoryEntry();
+		image = root.getWindow().getWorkspace().getImage();
 		Layer active = image.getActiveLayer();
 		if (active == null)
 			return;
@@ -72,5 +80,11 @@ extends Tool {
 		image.setDimension(image.getAbsoluteHeight(), image.getAbsoluteWidth());
 		active.setImage(outBufferedImage);
 		active.update();
+		addToHistory();
+	}
+	
+	@Override
+	public String toString() {
+		return "Rotate";
 	}
 }
