@@ -28,11 +28,13 @@ public class HSV
         Imgproc.cvtColor(img,img,Imgproc.COLOR_BGRA2BGR);
         Mat hsv = new Mat();
         Mat threshold = new Mat();
+        setProgress(50);
         Imgproc.cvtColor(img,hsv, Imgproc.COLOR_BGR2HSV);
         Core.inRange(hsv, new Scalar(170,80,50), new Scalar(120,40,40 ), threshold );
         BufferedImage outBufferedImage = Convert.mat2Img(threshold);
         active.setImage(outBufferedImage);
         active.update();
+        setProgress(100);
         addToHistory();
     }
 
