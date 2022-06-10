@@ -9,7 +9,7 @@ import com.editor.image.*;
 import com.editor.effects.*;
 
 public class EntryTint
-extends Entry {
+		extends Entry {
 	public EntryTint(EditorRuntime root) {
 		super(root, "Tint");
 		this.addActionListener(new ActionListener() {

@@ -1,29 +1,23 @@
 package com.editor.effects;
 
-import com.editor.core.EditorRuntime;
-
 import com.editor.core.*;
 import com.editor.image.*;
-import org.opencv.core.*;
-import org.opencv.core.Point;
-import org.opencv.imgproc.Imgproc;
-import org.opencv.photo.Photo;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-
-public class GaussianBlur 
+public class ColorGaussianBlur
 extends Effect {
 	private static final double[][] matrix = {{0.00, 0.01, 0.01, 0.01, 0.00},
 											  {0.01, 0.05, 0.11, 0.05, 0.01},
 											  {0.01, 0.11, 0.25, 0.11, 0.01},
 											  {0.01, 0.05, 0.11, 0.05, 0.01},
 											  {0.00, 0.01, 0.01, 0.01, 0.00}};
+	private Integer size;
 
-	public GaussianBlur(EditorRuntime root) {
+	public ColorGaussianBlur(EditorRuntime root) {
 		super(root);
+	}
+	public ColorGaussianBlur(EditorRuntime root, Integer size) {
+		super(root);
+		this.size = size;
 	}
 
 	private int gaussian(int i, int j, int[][] rgb) {
@@ -45,27 +39,35 @@ extends Effect {
 		return (255 << 24) + (resR << 16) + (resG << 8) + (resB);
 	}
 	
-	public void process() {
+	public void doGaussian() {
 		int[][] rgb = new int [active.getLayerWidth()][active.getLayerHeight()];
 		for (int i = 0; i < active.getLayerWidth(); i++) {
-			setProgress(20 * (i+1)/active.getLayerWidth());
 			for (int j = 0; j < active.getLayerHeight(); j++) {
 				rgb[i][j] = active.getRGB(i, j);
 			}
 		}
 
 		for (int i = 0; i < active.getLayerWidth(); i++) {
-			setProgress(20 + 80 * (i+1)/active.getLayerWidth());
 			for (int j = 0; j < active.getLayerHeight(); j++) {
 				active.setRGB(i, j, gaussian(i, j, rgb));
 			}
 		}
+	}
+
+	public void process()
+	{
+		for(int i = 0; i<this.size; i++)
+		{
+			doGaussian();
+			addProgress(100/this.size);
+		}
 		active.update();
+		setProgress(100);
 		addToHistory();
 	}
 	
 	@Override
 	public String toString() {
-		return "Gaussian Blur";
+		return "Color Gaussian Blur";
 	}
 }

@@ -9,7 +9,7 @@ import com.editor.image.*;
 import com.editor.effects.*;
 
 public class EntryTemperature
-extends Entry {
+		extends Entry {
 	public EntryTemperature(EditorRuntime root) {
 		super(root, "Temperature");
 		this.addActionListener(new ActionListener() {

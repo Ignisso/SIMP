@@ -8,23 +8,24 @@ import com.editor.window.assets.*;
 import com.editor.image.*;
 import com.editor.effects.*;
 
-public class EntryBrightness
+public class EntryColorGaussianBlur
 		extends Entry {
-	public EntryBrightness(EditorRuntime root) {
-		super(root, "Brightness");
+	public EntryColorGaussianBlur(EditorRuntime root) {
+		super(root, "ColorGaussianBlur");
 		this.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DialogBox db = new DialogBox(root.getWindow(), "Effect Brightness",
-					DialogBox.MB_APPLY | DialogBox.MB_CANCEL);
-				InteractiveSlider is = new InteractiveSlider("Intensity:", -100, 100);
+				DialogBox db = new DialogBox(root.getWindow(), "Effect Color Gaussian Blur",
+						DialogBox.MB_APPLY | DialogBox.MB_CANCEL);
+				InteractiveSlider is = new InteractiveSlider("Strength:", 1, 10);
 				db.addApplet(is);
 				db.finish();
 				db.doApply(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						db.close();
-						Effect effect = new Brightness(root, is.getValue());
-						if (effect.isActiveLayer())
+						Effect effect = new ColorGaussianBlur(root, is.getValue());
+						if (effect.isActiveLayer()) {
 							effect.doEffect();
+						}
 					}
 				});
 			}
