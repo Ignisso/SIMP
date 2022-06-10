@@ -200,6 +200,14 @@ extends JLayeredPane implements Cloneable {
 		return this.Y;
 	}
 	
+	public Integer getAbsoluteWidth() {
+		return this.width;
+	}
+	
+	public Integer getAbsoluteHeight() {
+		return this.height;
+	}
+	
 	public Layer getActiveLayer() {
 		if (activeLayer == null)
 			return null;

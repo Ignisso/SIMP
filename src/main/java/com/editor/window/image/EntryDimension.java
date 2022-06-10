@@ -19,10 +19,10 @@ extends Entry {
 					return;
 				DialogBox db = new DialogBox(root.getWindow(), "Set dimension",
 					DialogBox.MB_APPLY | DialogBox.MB_CANCEL);
-				String[] labels = {"width", "height"};
+				String[] labels = {"Width", "Height"};
 				int[] initValues = new int[2];
-				initValues[0] = image.getWidth();
-				initValues[1] = image.getHeight();
+				initValues[0] = image.getAbsoluteWidth();
+				initValues[1] = image.getAbsoluteHeight();
 				InteractiveInput ii = new InteractiveInput(labels, 1, 2048, 1, initValues);
 				db.addApplet(ii);
 				db.finish();

@@ -10,5 +10,6 @@ extends JMenu {
 		super("Image");
 		this.add(new EntryDimension(root));
 		this.add(new EntryColorSpace(root));
+		this.add(new EntryRotate(root));
 	}
 }
