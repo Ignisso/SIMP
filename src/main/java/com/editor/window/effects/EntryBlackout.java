@@ -18,7 +18,6 @@ extends Entry {
 					DialogBox.MB_APPLY | DialogBox.MB_CANCEL);
 				InteractiveSlider is = new InteractiveSlider("Pixel Distance:", 1, 255);
 				db.addApplet(is);
-				db.addApplet(new ColorPicker());
 				db.finish();
 				db.doApply(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {

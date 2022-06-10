@@ -22,7 +22,7 @@ public class EntryGaussianBlur
                 db.doApply(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         db.close();
-                        Effect effect = new GaussianBlur(root, is.getValue());
+                        Effect effect = new GaussianBlur(root);
                         if (effect.isActiveLayer()) {
                             effect.doEffect();
                         }
