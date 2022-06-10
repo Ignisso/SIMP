@@ -27,10 +27,12 @@ public class HDR
         Mat img = Convert.img2Mat(inBufferedImage);
         Imgproc.cvtColor(img,img,Imgproc.COLOR_BGRA2BGR);
         Mat out = new Mat();
+        setProgress(50);
         Photo.detailEnhance(img, out, 12,0.08F);
         BufferedImage outBufferedImage = Convert.mat2Img(out);
         active.setImage(outBufferedImage);
         active.update();
+        setProgress(100);
         addToHistory();
     }
 

@@ -36,7 +36,6 @@ extends Effect {
 
                 rgb = (a << 24) + (r << 16) + (g << 8) + (b);
                 active.setRGB(i, j, rgb);
-                addProgress((active.getLayerWidth() / 20* i)/100);
             }
         }
         active.update();

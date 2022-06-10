@@ -22,13 +22,14 @@ public class WaterColor
     }
 
     public void doEffect() {
-        BufferedImage inBufferedImage = active.getImage();
+        BufferedImage inBufferedImage = active.getImage();          setProgress(5);
         Mat img = Convert.img2Mat(inBufferedImage);
-        Imgproc.cvtColor(img,img,Imgproc.COLOR_BGRA2BGR);
-        Mat output = new Mat();
-        Photo.stylization(img,output,60F,0.4F);
-        BufferedImage outBufferedImage = Convert.mat2Img(output);
+        Imgproc.cvtColor(img,img,Imgproc.COLOR_BGRA2BGR);           setProgress(22);
+        Mat output = new Mat();                                     setProgress(41);
+        Photo.stylization(img,output,60F,0.4F);                     setProgress(57);
+        BufferedImage outBufferedImage = Convert.mat2Img(output);   setProgress(97);
         active.setImage(outBufferedImage);
+        setProgress(100);
         active.update();
         addToHistory();
     }
