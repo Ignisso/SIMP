@@ -11,6 +11,7 @@ extends JPanel {
 	
 	public InteractiveRadio(String[] labels) {
 		super(new FlowLayout(FlowLayout.CENTER, 10, 5));
+		ButtonGroup group = new ButtonGroup();
 		values = new JRadioButton[labels.length];
 		for(int i = 0; i < labels.length; i++) {
 			if(i == 0)
@@ -18,7 +19,12 @@ extends JPanel {
 			else
 				values[i] = new JRadioButton(labels[i]);
 			this.add(values[i]);
-		} 
+			group.add(values[i]);
+		}
+	}
+	
+	public void setSelected(int i) {
+		this.values[i].setSelected(true);
 	}
 	
 	public int getValue() {

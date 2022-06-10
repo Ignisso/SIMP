@@ -143,6 +143,8 @@ extends JComponent implements Cloneable {
 	}
 	
 	public void setChannels(int channels) throws UnsupportedFormat {
+		if (this.imageFormat == channels)
+			return;
 		for (Layer l : this.layers) {
 			Mat img = Convert.img2Mat(l.getImage());
 			int conversion = 0;
