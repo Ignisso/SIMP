@@ -14,7 +14,7 @@ import org.opencv.imgproc.Imgproc;
 import java.io.File;
 
 public class Image
-extends JComponent implements Cloneable {
+extends JLayeredPane implements Cloneable {
 	private MainWindow	   window;
 	private Integer		  activeLayer;
 	private ArrayList<Layer> layers;
@@ -104,7 +104,7 @@ extends JComponent implements Cloneable {
 			Layer cloned = l.clone();
 			cloned.setParent(this);
 			this.layers.add(cloned);
-			this.add(cloned);
+			this.add(cloned, cloned.getIndex());
 		}
 		this.scale	   = scale;
 		this.X		   = X;
@@ -256,9 +256,9 @@ extends JComponent implements Cloneable {
 		
 		Layer layer = new Layer(this.window, image, this.layers.size(), this);
 		this.layers.add(layer);
-		this.add(layer);
+		this.add(layer, this.layers.size() - 1);
 		this.activeLayer = this.layers.size() - 1;
-		layer.update();
+		this.update();
 	}
 	
 	public void addLayer(File file) {
@@ -272,9 +272,9 @@ extends JComponent implements Cloneable {
 		}
 		Layer layer = new Layer(this.window, image, this.layers.size(), this);
 		this.layers.add(layer);
-		this.add(layer);
+		this.add(layer, this.layers.size() - 1);
 		this.activeLayer = this.layers.size() - 1;
-		layer.update();
+		this.update();
 	}
 	
 	public void update() {

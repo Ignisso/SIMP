@@ -42,8 +42,8 @@ extends Tool {
 						System.err.println(e.getMessage());
 					}
 					if (end != null)
-						layer.setPosition((int)(end.getX() - beg.getX() + lxp),
-							(int)(end.getY() - beg.getY() + lyp));
+						layer.setPosition((int)((end.getX() - beg.getX()) / image.getScale() + lxp),
+							(int)((end.getY() - beg.getY()) / image.getScale()) + lyp);
 				}
 			}
 		};

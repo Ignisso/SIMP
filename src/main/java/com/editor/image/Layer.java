@@ -75,8 +75,6 @@ extends JComponent {
 	}
 	
 	public Integer getAbsoluteRGB(int x, int y) {
-		x-=this.X;
-		y-=this.Y;
 		if (x < 0 || x >= this.image.getWidth() || y < 0 || y >= this.image.getHeight())
 			return null;
 		else
