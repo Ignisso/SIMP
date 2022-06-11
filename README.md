@@ -1,8 +1,9 @@
 # SIMP
 ![](https://img.shields.io/badge/build-passing-brightgreen) ![](https://img.shields.io/badge/version-1.0-brightgreen)
+
 SIMP written in Java as a part of APRO2 classes on Warsaw University of Technology. What stands for **S**imple **I**mage **M**odifying **P**rogram
 
-![Screenshot of this app](https://imgur.com/a/M9jAMo5.png)
+![Screenshot of this app](https://i.imgur.com/6K2Wlwg.png)
 
 ## Key Features
 - Undo / Redo
@@ -13,7 +14,7 @@ SIMP written in Java as a part of APRO2 classes on Warsaw University of Technolo
 
 ## Go Dark, be EMO
 
-![Dark Theme screenshot](https://imgur.com/a/L16Q4PI.png)
+![Dark Theme screenshot](https://i.imgur.com/XxK2uub.png)
 
 ## Live example
 On the left side unedited photo, on the right photo after applying few effects
