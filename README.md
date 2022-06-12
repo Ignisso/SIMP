@@ -1,6 +1,4 @@
 # SIMP
-![](https://img.shields.io/badge/build-passing-brightgreen) ![](https://img.shields.io/badge/version-1.0-brightgreen)
-
 SIMP written in Java as a part of APRO2 classes on Warsaw University of Technology. What stands for **S**imple **I**mage **M**odifying **P**rogram
 
 ![Screenshot of this app](https://i.imgur.com/6K2Wlwg.png)
