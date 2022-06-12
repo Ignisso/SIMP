@@ -1,13 +1,24 @@
-# APRO\_22L\_PRO\_PT\_Edytor\_obrazow
-A simple, yet working Image Editor written in Java as a part of APRO2 classes on Warsaw University of Technology.
+# SIMP
+![](https://img.shields.io/badge/build-passing-brightgreen) ![](https://img.shields.io/badge/version-1.0-brightgreen)
 
-![Screenshot of this app](https://i.imgur.com/DcFlH3L.png)
+SIMP written in Java as a part of APRO2 classes on Warsaw University of Technology. What stands for **S**imple **I**mage **M**odifying **P**rogram
+
+![Screenshot of this app](https://i.imgur.com/6K2Wlwg.png)
 
 ## Key Features
+- Undo / Redo
 - written in Java
-[//]: # - simple image editing
-[//]: # - more advanced image effects
-- works on Linux and Windows
+- no tutorials, because its dead simple
+- cool and advanced image effects
+- works (might work) on Linux and Windows
+
+## Go Dark, be EMO
+
+![Dark Theme screenshot](https://i.imgur.com/XxK2uub.png)
+
+## Live example
+On the left side unedited photo, on the right photo after applying few effects
+![](https://i.imgur.com/R5jNKZL.png)
 
 ## How To Use
 To clone and run this application you'll need Git and JVM installed on your computer.
@@ -46,83 +57,18 @@ $ cd ~/Downloads
 $ java -jar Editor.jar
 ```
 
-## Roadmap
-TBA
+## Future plans
+- Finish Color Picker implementation
+- Simple shapes like lines, rectangles, circles and triangles
+- Layer Window (and easy way to change order of layers)
+- ToolBox with all available tools
+- More keybindings like Ctrl+O to open a file
+- Finally learn how to use Java Executable Wrapper
 
-## Directory & file structure
-```
-.gitignore
-build.bat
-build.sh
-clean.bat
-clean.sh
-README.md
-run.bat
-run.sh
+## What we used in this project?
+- OpenCV Libray (matrix operations, kernel generating and applying effects)
+- Flatlaf (Themes)
 
-src
-└───main
-    └───java
-        │   MANIFEST.mf
-        │
-        └───com
-            └───editor
-                ├───core
-                │       EditorRuntime.java
-                │       RGBA.java
-                │       Settings.java
-                │
-                ├───effects
-                │       Blackout.java
-                │       Effect.java
-                │
-                ├───history
-                │       Command.java
-                │       EditImageCommand.java
-                │       History.java
-                │       Memento.java
-                │
-                ├───image
-                │       Image.java
-                │       Layer.java
-                │       Workspace.java
-                │
-                ├───tools
-                │       Pen.java
-                │       Shift.java
-                │       Tool.java
-                │       Zoom.java
-                │
-                └───window
-                    │   Entry.java
-                    │   MainBar.java
-                    │   MainWindow.java
-                    │   MainWindowListener.java
-                    │   Window.java
-                    │
-                    ├───edit
-                    │       EntryRedo.java
-                    │       EntryUndo.java
-                    │       MenuEdit.java
-                    │
-                    ├───effects
-                    │       EntryBlackout.java
-                    │       MenuEffects.java
-                    │
-                    ├───file
-                    │       EntryExit.java
-                    │       EntryNew.java
-                    │       EntryOpen.java
-                    │       EntrySave.java
-                    │       EntrySaveAs.java
-                    │       MenuFile.java
-                    │
-                    └───tools
-                            EntryShift.java
-                            EntryZoom.java
-                            MenuTools.java
-```
-
-## License
-TBA
+## Authors
+Matusz Jurczak | Mikołaj Matuszewski | Julia Parobczy
 
