@@ -19,6 +19,7 @@ On the left side unedited photo, on the right photo after applying few effects
 ![](https://i.imgur.com/R5jNKZL.png)
 
 ## How To Use
+### Build from source
 To clone and run this application you'll need Git and JVM installed on your computer.
 From your command line:
 ```bash
@@ -41,18 +42,30 @@ On Windows:
 :: Build the app (Windows)
 C:\> build.bat
 
-:: Run the app (Windows)
-C:\> run.bat
+:: Run the app (Windows x86)
+C:\> runwinx64.bat
+
+:: Run the app (Windows x64)
+C:\> runwinx64.bat
 ```
 
-## Download
-You can dowload latest JAR version of Image Editor for Linux and Windows. In order to run them use 
+### Download
+You can download latest JAR version of Image Editor for Linux and Windows. In order to run them use 
 ```bash
 # Go into the folder where you have dowloaded file 
 $ cd ~/Downloads
 
 # Run jar file
 $ java -jar Editor.jar
+```
+
+### PATH environment variable
+To run, the PATH enviroment variable is required to contain the path to rhe directory where the OpenCV dynamic library (DLL/SO) is located.
+```batch
+set path=%path%;<path_to_your_directory>
+```
+```bash
+export PATH=$PATH:<path_to_your_directory>
 ```
 
 ## Future plans
