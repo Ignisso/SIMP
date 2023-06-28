@@ -1,17 +1,16 @@
-# SIMP
-SIMP written in Java as a part of APRO2 classes on Warsaw University of Technology. What stands for **S**imple **I**mage **M**odifying **P**rogram
+# SIMP - Simple Image Modifying Program
+SIMP written in Java as a part of **APRO2** classes on Warsaw University of Technology.
 
 ![Screenshot of this app](https://i.imgur.com/6K2Wlwg.png)
 
 ## Key Features
 - Undo / Redo
-- written in Java
-- no tutorials, because its dead simple
-- cool and advanced image effects
-- works (might work) on Linux and Windows
+- Written in Java
+- No tutorials, because its dead simple
+- Cool and advanced image effects
+- Works on Windows and (might work) on Linux
 
 ## Go Dark, be EMO
-
 ![Dark Theme screenshot](https://i.imgur.com/XxK2uub.png)
 
 ## Live example
